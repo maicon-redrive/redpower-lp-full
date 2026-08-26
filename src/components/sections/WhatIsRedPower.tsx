@@ -2,16 +2,16 @@ import { GLANCYR_MEDIUM_EXPANDED } from "@/lib/typography";
 
 const AUDIENCES = [
   {
-    title: "PARA QUEM JÁ É CLIENTE REDRIVE",
-    body: "Você tem a ferramenta. O RedPower te dá o raciocínio que faltava para extrair o máximo de cada funcionalidade — sem tentativa e erro, sem configurar do jeito errado e perder tempo.",
+    title: "PARA QUEM ESTÁ CHEGANDO AGORA",
+    body: "Você recebe o Sistema Operacional de Vendas com IA e o método juntos: um ano de Redrive + as 8 aulas do CEO. Começa com a operação montada — do zero à primeira venda — sem configurar nada sozinho.",
   },
   {
-    title: "PARA QUEM ESTÁ COMEÇANDO",
-    body: "Entender o método antes de operar, encurta meses de curva de aprendizado. Você começa a construir a operação certa desde o primeiro dia — não descobrindo isso depois de 6 meses.",
+    title: "PARA QUEM QUER ESTRUTURA DESDE O DIA 1",
+    body: "Entender o método antes de operar encurta meses de curva de aprendizado. Você constrói a operação certa desde o primeiro dia — não descobrindo isso depois de 6 meses.",
   },
   {
     title: "PARA QUEM QUER RESULTADOS MAIS RÁPIDOS",
-    body: "O Daniel levou anos construindo e testando esse método. No RedPower, você comprime essa curva em 8 aulas e dois livros — e aplica imediatamente na sua operação.",
+    body: "O Daniel levou anos construindo e testando esse método. No RedPower Full, você comprime essa curva e aplica imediatamente — com a Redrive e a IA embarcada já vendendo por você.",
   },
 ];
 
@@ -31,32 +31,37 @@ export function WhatIsRedPower() {
               style={{ fontSize: "44px", ...GLANCYR_MEDIUM_EXPANDED }}
             >
               <span className="text-[#ff0000]">
-                Ajuste, encaixe
+                Uma operação
                 <br />
-                e lubrifique
+                de vendas com IA
               </span>{" "}
               <span className="text-white">
-                todas
+                montada
                 <br />
-                as engrenagens
+                e no ar, do zero
                 <br />
-                da Redrive
+                à primeira venda
               </span>
             </h2>
             <div className="mt-6 max-w-sm space-y-4 text-base leading-relaxed text-camurca-texto">
               <p>
-                A Redrive tem tudo que uma operação de vendas precisa para ser previsível,
-                escalável e eficiente. O RedPower é o programa que te ensina a fazer isso
-                acontecer — com o método certo, os livros do CEO e, se quiser, a implantação do
-                nosso time.
+                A <strong className="font-extrabold text-bege-texto">Redrive</strong> é o{" "}
+                <strong className="font-extrabold text-bege-texto">
+                  Sistema Operacional de Vendas com IA
+                </strong>{" "}
+                — leads, atendimento, CRM, automações e jornadas conectados, com IA embarcada
+                vendendo em cada etapa. O{" "}
+                <strong className="font-extrabold text-bege-texto">RedPower Full</strong> é o
+                programa que coloca essa operação no ar: do zero à primeira venda.
               </p>
               <p>
-                Não é mais uma série de vídeos.{" "}
+                Não é mais um curso de vídeos.{" "}
                 <strong className="font-extrabold text-bege-texto">
-                  É o entendimento completo de como um Sistema Operacional de Vendas funciona
+                  É a operação inteira montada com você
                 </strong>{" "}
-                — fase por fase, engrenagem por engrenagem — para que você saiba não só o que
-                fazer, mas porque cada decisão importa.
+                — um ano de Redrive, o método do CEO fase por fase e a IA já vendendo — para que
+                você saiba não só o que fazer, mas por que cada decisão importa. Os dois livros
+                entram como complemento.
               </p>
               <p>
                 Quem entende o método opera diferente.

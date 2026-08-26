@@ -47,20 +47,20 @@ export function Hero() {
           className="max-w-2xl font-display leading-[1.05] text-bege-texto"
           style={{ fontSize: 40, ...GLANCYR_BOLD_EXPANDED }}
         >
-          Use a Redrive no{" "}
-          <span className="text-vermelho-redrive">máximo potencial</span>
+          Sua operação de vendas com IA,{" "}
+          <span className="text-vermelho-redrive">do zero à primeira venda</span>
         </h1>
 
         <p className="mt-6 max-w-md text-base leading-relaxed text-camurca-texto">
-          A maioria dos clientes opera com{" "}
+          A Redrive é o{" "}
           <strong className="font-semibold text-bege-texto">
-            menos de 30% do que a plataforma é capaz de entregar
+            Sistema Operacional de Vendas com IA
           </strong>
-          . O RedPower é o programa que une método, conhecimento e execução para{" "}
+          : leads, atendimento, CRM e automações conectados, com IA embarcada vendendo por você. O RedPower Full é o programa que coloca essa operação no ar{" "}
           <strong className="font-semibold text-bege-texto">
-            colocar a sua máquina de vendas com IA em operação completa
+            do zero à primeira venda
           </strong>{" "}
-          — do primeiro lead ao fechamento.
+          — por menos de <strong className="font-semibold text-bege-texto">R$30 por dia</strong>.
         </p>
 
         <div className="relative mx-auto mt-8 h-[351px] w-[265px]">
@@ -107,23 +107,23 @@ export function Hero() {
               className="max-w-2xl font-display leading-[1.05] text-bege-texto"
               style={{ fontSize: "58px", ...GLANCYR_BOLD_EXPANDED }}
             >
-              Use a Redrive
+              Sua operação de
               <br />
-              no <span className="text-vermelho-redrive">máximo</span>
+              vendas com IA, <span className="text-vermelho-redrive">do zero</span>
               <br />
-              <span className="text-vermelho-redrive">potencial</span>
+              <span className="text-vermelho-redrive">à primeira venda</span>
             </h1>
 
             <p className="mt-6 max-w-md text-base leading-relaxed text-camurca-texto">
-              A maioria dos clientes opera com{" "}
+              A Redrive é o{" "}
               <strong className="font-semibold text-bege-texto">
-                menos de 30% do que a plataforma é capaz de entregar
+                Sistema Operacional de Vendas com IA
               </strong>
-              . O RedPower é o programa que une método, conhecimento e execução para{" "}
+              : leads, atendimento, CRM e automações conectados, com IA embarcada vendendo por você. O RedPower Full é o programa que coloca essa operação no ar{" "}
               <strong className="font-semibold text-bege-texto">
-                colocar a sua máquina de vendas com IA em operação completa
+                do zero à primeira venda
               </strong>{" "}
-              — do primeiro lead ao fechamento.
+              — por menos de <strong className="font-semibold text-bege-texto">R$30 por dia</strong>.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-6">

@@ -291,12 +291,12 @@ export function Pricing() {
               RedMax Full.
               <br />
             </span>
-            <span className="text-white">Método e plataforma, do dia um.</span>
+            <span className="text-white">Método e operação com IA, do dia um.</span>
           </h2>
           <p className="self-end text-base leading-relaxed text-camurca-texto" style={{ maxWidth: 416 }}>
             Dois combos para operar a Redrive por um ano inteiro.
             <br />
-            Um te dá o método e a plataforma.
+            Um te dá o método e a operação com IA.
             <br />
             O outro soma a implantação feita com você.
           </p>

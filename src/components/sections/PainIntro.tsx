@@ -10,28 +10,27 @@ export function PainIntro() {
             className="font-display leading-[1.1]"
             style={{ fontSize: "44px", ...GLANCYR_MEDIUM_EXPANDED }}
           >
-            <span className="text-vermelho-redrive">Ter a ferramenta certa</span> não é o mesmo que{" "}
-            <span className="text-bege-texto">operar no limite dela</span>
+            <span className="text-vermelho-redrive">Vender com consistência</span> não é sorte —{" "}
+            <span className="text-bege-texto">é sistema</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-base leading-relaxed text-camurca-texto">
             <p>
-              A <strong className="font-semibold text-bege-texto">Redrive</strong> é um{" "}
-              <strong className="font-semibold text-bege-texto">Sistema Operacional de Vendas</strong>{" "}
-              completo.{" "}
+              A <strong className="font-semibold text-bege-texto">Redrive</strong> é o{" "}
+              <strong className="font-semibold text-bege-texto">Sistema Operacional de Vendas com IA</strong>.{" "}
               <strong className="font-semibold text-bege-texto">
                 Geração de leads, ativação, atendimento com IA, CRM, automações, jornadas,
                 previsibilidade — tudo conectado.
               </strong>
             </p>
             <p>
-              Mas usar a ferramenta sem entender o método por trás é como ter uma equipe de alta
-              performance e não dar playbook pra eles. O esforço acontece. O resultado não vem no
+              Mas um sistema desses não vende sozinho. Sem o método por trás, é como ter uma equipe
+              de alta performance sem playbook: o esforço acontece, o resultado não vem no
               potencial que poderia.
             </p>
             <p className="font-semibold text-bege-texto">
-              O problema não é a plataforma.
-              <br />É a ausência de método para operá-la.
+              Por isso o RedPower Full é um programa:
+              <br />o Sistema Operacional de Vendas com IA e o método para operá-lo, juntos desde o dia um.
             </p>
           </div>
         </div>

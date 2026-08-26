@@ -30,7 +30,7 @@ const REDUP_RIGHT = [
 const REDMAX_LEFT = [
   "12 meses de Redrive Enterprise inclusos",
   "Tudo do RedUp Full incluso",
-  "Implantação técnica da plataforma",
+  "Implantação técnica da Redrive",
   "Configuração dos fluxos e jornadas",
 ];
 

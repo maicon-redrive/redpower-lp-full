@@ -67,13 +67,13 @@ function ImplantacaoUpgradeModal({ open, onClose }: { open: boolean; onClose: ()
               CRM estruturado e equipe treinada.
             </p>
             <p className="font-semibold">
-              É o atalho entre ter a ferramenta e ter a máquina funcionando de verdade.
+              É o atalho entre ter a Redrive e ter a máquina funcionando de verdade.
             </p>
           </div>
 
           <div className="mt-6 text-sm text-bege-texto">
             {[
-              "Implantação técnica da plataforma",
+              "Implantação técnica da Redrive",
               "Configuração de fluxos e jornadas",
               "Agentes de IA configurados para vender",
               "Treinamento operacional da equipe",

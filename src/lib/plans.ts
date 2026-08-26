@@ -71,7 +71,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
     guaranteeDays: null,
     features: [
       "Tudo do RedUp incluso",
-      "Implantação técnica da plataforma",
+      "Implantação técnica da Redrive",
       "Configuração dos fluxos e jornadas",
       "Agentes de IA configurados para vender",
       "Treinamento operacional da equipe",
@@ -120,7 +120,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
     guaranteeDays: null,
     features: [
       "Tudo do RedMax incluso",
-      "Implantação técnica da plataforma",
+      "Implantação técnica da Redrive",
       "Agentes de IA configurados para vender",
       "Treinamento operacional da equipe",
       "12 meses de Redrive Enterprise — o Sistema Operacional de Vendas Agênticas",
@@ -166,7 +166,7 @@ export const COMPARISON_ROWS: { label: string; redup: boolean; redmax: boolean }
   { label: "Livro Magia da Conversa (impresso e e-book)", redup: true, redmax: true },
   { label: "Livro Chat First (impresso e e-book)", redup: true, redmax: true },
   { label: "Acesso vitalício", redup: true, redmax: true },
-  { label: "Implantação técnica da plataforma", redup: false, redmax: true },
+  { label: "Implantação técnica da Redrive", redup: false, redmax: true },
   { label: "Configuração de fluxos e jornadas", redup: false, redmax: true },
   { label: "Agentes de IA configurados para vender", redup: false, redmax: true },
   { label: "Treinamento operacional da equipe", redup: false, redmax: true },
@@ -177,52 +177,53 @@ export const COMPARISON_ROWS: { label: string; redup: boolean; redmax: boolean }
 
 export const FAQ_ITEMS: { question: string; answer: string }[] = [
   {
-    question: "O RedUp serve para quem está começando com a Redrive?",
+    question: "O que é a Redrive?",
     answer:
-      "Sim — e é especialmente valioso nesse momento. Entender o método antes de operar a plataforma encurta muito a curva de aprendizado e evita configurar as coisas do jeito errado logo no começo.",
+      "A Redrive é o Sistema Operacional de Vendas Agênticas: um sistema que conecta geração de leads, atendimento, CRM, automações e jornadas num só lugar — com IA embarcada (agentes) atuando em cada etapa para vender por você. No RedPower Full, você recebe 1 ano de Redrive Enterprise junto com o método para operá-la.",
   },
   {
-    question: "Qual a diferença entre o RedUp e o RedMax na prática?",
+    question: "O que é o RedPower Full?",
     answer:
-      "O RedUp te dá o conhecimento — o que fazer, como pensar, qual lógica aplicar em cada fase. O RedMax soma a execução: nosso time ajuda a configurar a plataforma para a sua realidade, criar os fluxos, configurar os agentes de IA e treinar sua equipe. Um ensina a dirigir. O outro ajusta o carro para a sua pista.",
+      "É o programa que coloca sua operação de vendas com IA no ar, do zero à primeira venda. Você recebe o método completo do CEO (8 aulas, mais os dois livros como complemento) e 12 meses de Redrive Enterprise — o sistema onde a operação de fato roda.",
   },
   {
-    question: "Já tenho a Redrive há algum tempo. O método ainda faz sentido?",
+    question: "Preciso já conhecer ou já usar a Redrive?",
     answer:
-      'Faz — provavelmente mais sentido ainda. Quem já usa a plataforma tende a aplicar o método imediatamente, porque reconhece cada conceito no contexto real da operação. Muitos clientes relatam que só entenderam o "porquê" de certas funcionalidades depois do método.',
+      "Não. O RedPower Full foi feito para quem está começando: você recebe o acesso à Redrive e o método para operá-la juntos. Entender o método antes de operar encurta meses de curva de aprendizado e evita configurar do jeito errado logo no começo.",
   },
   {
-    question: "Em quanto tempo consigo assistir as 8 aulas?",
+    question: "Qual a diferença entre RedUp Full e RedMax Full?",
     answer:
-      "São cerca de 3 horas de conteúdo. Você pode assistir em um fim de semana ou distribuir ao longo da semana. O acesso é permanente — sem prazo para terminar.",
+      "Os dois incluem o método completo + 12 meses de Redrive Enterprise. No RedUp Full, você mesmo coloca a operação no ar com o método na mão. No RedMax Full, nosso time faz a implantação assistida junto com você — configura a Redrive, cria os fluxos, ativa os agentes de IA e treina sua equipe. Um te dá o conhecimento; o outro soma a execução.",
+  },
+  {
+    question: "Quando recebo o acesso à Redrive e ao método?",
+    answer:
+      "O acesso ao método é imediato após a confirmação do pagamento. A sua conta na Redrive é criada pelo nosso time logo em seguida — você recebe os dados de acesso e as orientações para começar.",
+  },
+  {
+    question: "O que acontece depois dos 12 meses de Redrive?",
+    answer:
+      "Os 12 meses de Redrive Enterprise já estão inclusos no combo. Ao fim do período, você pode renovar a assinatura para manter a operação rodando, sem obrigação. O acesso ao método e às aulas é vitalício — continua seu para sempre.",
+  },
+  {
+    question: "Como funciona a implantação do RedMax Full?",
+    answer:
+      "Após a compra, nosso time entra em contato em até 48h para o alinhamento inicial. A implantação é assistida: você e sua equipe aprendem fazendo, com o suporte do nosso time em cada etapa — configuração da Redrive, fluxos, jornadas, agentes de IA e treinamento. Antes de começar, pedimos que você assista ao método e inicie a leitura do Magia da Conversa, para aproveitar muito mais cada sessão.",
   },
   {
     question: "Os livros são físicos ou digitais?",
     answer:
-      "No programa, os dois livros são entregues em formato digital e físico — você recebe o ebook para acesso imediato e o impresso enviado para o seu endereço.",
+      "Os dois livros (Magia da Conversa e Chat First) entram como complemento do programa, em formato digital e físico — ebook para acesso imediato e o impresso enviado para o seu endereço.",
+  },
+  {
+    question: "Quais são as formas de pagamento?",
+    answer:
+      "Você pode pagar em até 12x no cartão, ou à vista com 10% de desconto.",
   },
   {
     question: "Tem garantia?",
     answer:
-      "Sim. Tanto o RedUp quanto o RedMax têm 7 dias de garantia incondicional. Se por qualquer motivo não ficar satisfeito, devolvemos 100% do valor sem perguntas. Como ambos os planos incluem o envio do livro físico, basta devolvê-lo nas mesmas condições em que recebeu — o frete de devolução fica por nossa conta.",
-  },
-  {
-    question: "Comprei o RedMax. Quando a implantação começa?",
-    answer:
-      "Após a compra, nosso time entra em contato em até 48h para um meet de boas-vindas e alinhamento inicial. Antes de começar a implantação, pedimos que você assista ao Método Redrive e inicie a leitura do Magia da Conversa — isso garante que você já chega na implantação com o raciocínio certo, aproveitando muito mais cada sessão. Com isso feito ou em andamento, traçamos juntos o plano de ação e damos início à implantação pensada para o seu negócio.",
-  },
-  {
-    question: "A implantação é feita pelo time da Redrive ou preciso fazer eu mesmo?",
-    answer:
-      "A implantação do RedMax é assistida — o que significa que você e sua equipe aprendem fazendo, com o suporte ativo do nosso time em cada etapa. O objetivo não é só configurar a plataforma, mas garantir que vocês saibam operar, ajustar e evoluir a operação com autonomia. Quando necessário, colocamos a mão na massa — mas o protagonismo é de vocês, porque é assim que o aprendizado se consolida.",
-  },
-  {
-    question: "Quais são as formas de pagamento?",
-    answer: "RedUp e RedMax estão disponíveis para pagamento via cartão de crédito, Pix e boleto bancário.",
-  },
-  {
-    question: "Comprei o RedUp, mas quero adicionar a Implantação. Consigo contratar depois?",
-    answer:
-      "Sim, você pode fazer o upgrade para o RedMax a qualquer momento. {{CTA_IMPLANTACAO}} e garanta a Implantação com condições especiais para quem já é RedUp.",
+      "O RedUp Full tem 7 dias de garantia incondicional: se não ficar satisfeito, devolvemos 100% do valor. Como o programa inclui o envio do livro físico, basta devolvê-lo nas mesmas condições em que recebeu — o frete de retorno fica por nossa conta. O RedMax Full, por incluir a implantação assistida, tem os termos alinhados com nosso time no início.",
   },
 ];

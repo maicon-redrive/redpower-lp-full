@@ -8,7 +8,7 @@ import {
 
 const CARDS = [
   {
-    title: "Configuração completa da plataforma",
+    title: "Configuração completa da Redrive",
     icon: "/images/impl-icon-config.png",
     body: "Seu ambiente Redrive configurado do zero: canais conectados, setores criados, permissões definidas e estrutura pronta para operar. Sem improviso, sem configuração errada.",
   },
@@ -106,7 +106,7 @@ export function Implementation() {
                 Você não precisa descobrir sozinho. Não precisa testar e errar durante meses.
               </p>
               <p className="mt-0 font-extrabold">
-                A implantação é o atalho entre ter a ferramenta e ter a máquina funcionando.
+                A implantação é o atalho entre ter a Redrive e ter a máquina funcionando.
               </p>
             </div>
 

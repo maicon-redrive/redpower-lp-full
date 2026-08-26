@@ -2,18 +2,18 @@ import { GLANCYR_BOLD_EXPANDED } from "@/lib/typography";
 
 const JOURNEYS = [
   {
-    name: "RedUp",
+    name: "RedUp Full",
     bg: "rgba(153, 0, 0, 0.24)",
     border: "#ff7c7c",
-    headline: "Método Redrive em vídeo com o Daniel, mais os dois livros.",
-    body: "Você aprende o raciocínio por trás de cada fase e aplica na sua operação com autonomia.",
+    headline: "O método completo + 1 ano de Redrive, o Sistema Operacional de Vendas Agênticas.",
+    body: "Você coloca a operação no ar com o método na mão — do zero à primeira venda, com autonomia.",
   },
   {
-    name: "RedMax",
+    name: "RedMax Full",
     bg: "rgba(100, 31, 28, 0.24)",
     border: "#ff0000",
-    headline: "Tudo do RedUp, mais a implantação, feita junto com nosso time.",
-    body: "Configuração, fluxos, agentes de IA e treinamento. A máquina montada e operando.",
+    headline: "Tudo do RedUp Full, mais a implantação, feita junto com nosso time.",
+    body: "Configuração da Redrive, fluxos, agentes de IA e treinamento. A máquina montada e operando por você.",
   },
 ];
 
@@ -26,7 +26,7 @@ export function Journeys() {
             className="col-span-12 font-display text-bege-texto lg:col-span-3"
             style={{ fontSize: "22px", lineHeight: "30px", ...GLANCYR_BOLD_EXPANDED }}
           >
-            O <span className="text-vermelho-redrive">RedPower</span> tem
+            O <span className="text-vermelho-redrive">RedPower Full</span> tem
             <br />
             duas jornadas:
           </p>

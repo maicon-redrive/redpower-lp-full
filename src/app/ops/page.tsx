@@ -83,8 +83,15 @@ interface Product {
 }
 
 /* ─── Constants ──────────────────────────────────────── */
+// Combos RedPower Full (LP2): método/livros + 12 meses de Redrive Enterprise.
+// Toda venda com esse plano precisa de criação MANUAL da conta Redrive (campo cliente_redrive).
+const isRedPowerFull = (v: Venda): boolean =>
+  ["redup-full", "redmax-full"].includes(v.plano) || /red\s*power\s*full/i.test(v.product_name || "");
+
 const PRODUCTS: Product[] = [
-  { id: "redpower", name: "RedPower", desc: "Método + livros + implantação", icon: "⚡", active: true, match: (v) => /red\s*power|redup|redmax/i.test(v.product_name || "") || ["redup", "redmax", "revisao"].includes(v.plano) },
+  // RedPower original — exclui explicitamente os combos Full para não duplicar contagem.
+  { id: "redpower", name: "RedPower", desc: "Método + livros + implantação", icon: "⚡", active: true, match: (v) => !isRedPowerFull(v) && (/red\s*power|redup|redmax/i.test(v.product_name || "") || ["redup", "redmax", "revisao"].includes(v.plano)) },
+  { id: "redpowerfull", name: "RedPower Full", desc: "Método + livros + 12m Redrive Enterprise", icon: "🔥", active: true, match: isRedPowerFull },
   { id: "chatfirst", name: "Chat First", desc: "Livro físico e digital", icon: "📘", active: true, match: (v) => /chat\s*first/i.test(v.product_name || "") },
   { id: "redgo", name: "RedGo", desc: "Automação de vendas", icon: "🚀", active: false, match: () => false },
   { id: "saleos", name: "SaleOS", desc: "Sistema operacional de vendas", icon: "💻", active: false, match: () => false },
@@ -94,6 +101,8 @@ const PLANS: Record<string, { name: string; livros: boolean; implantacao: boolea
   redup: { name: "RedUp", livros: true, implantacao: false, itens: ["Magia da Conversa (livro)", "Chat First (livro)", "Método Redrive (8 aulas)"] },
   redmax: { name: "RedMax", livros: true, implantacao: true, itens: ["Magia da Conversa (livro)", "Chat First (livro)", "Método Redrive (8 aulas)", "Implantação Redrive"] },
   revisao: { name: "Revisão", livros: false, implantacao: true, itens: ["Implantação Redrive (revisão)"] },
+  "redup-full": { name: "RedUp Full", livros: true, implantacao: false, itens: ["Magia da Conversa (livro)", "Chat First (livro)", "Método Redrive (8 aulas)", "12 meses Redrive Enterprise"] },
+  "redmax-full": { name: "RedMax Full", livros: true, implantacao: true, itens: ["Magia da Conversa (livro)", "Chat First (livro)", "Método Redrive (8 aulas)", "Implantação Redrive", "12 meses Redrive Enterprise"] },
 };
 
 const IMPL_STAGES = [
@@ -733,6 +742,13 @@ export default function OpsPage() {
         <div className={`kpi ${prodEnviosPend > 0 ? "warn" : "ok"}`}><div className="label">Envios pendentes</div><div className="value">{prodEnviosPend}</div></div>
         <div className="kpi"><div className="label">Gasto total frete</div><div className="value">{BRL(prodFrete)}</div></div>
         <div className="kpi"><div className="label">Total de vendas</div><div className="value">{productSales.length}</div></div>
+        {activeProduct === "redpowerfull" && (
+          <div className={`kpi ${prodPaid.filter((s) => !s.cliente_redrive).length > 0 ? "warn" : "ok"}`}>
+            <div className="label">Contas Redrive a criar</div>
+            <div className="value">{prodPaid.filter((s) => !s.cliente_redrive).length}</div>
+            <div className="sub">combos pagos sem conta criada</div>
+          </div>
+        )}
       </div>
       {activeProduct === "redpower" && (
         <>

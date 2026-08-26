@@ -54,7 +54,7 @@ export function Hero() {
         <p className="mt-6 max-w-md text-base leading-relaxed text-camurca-texto">
           A Redrive é o{" "}
           <strong className="font-semibold text-bege-texto">
-            Sistema Operacional de Vendas com IA
+            Sistema Operacional de Vendas Agênticas
           </strong>
           : leads, atendimento, CRM e automações conectados, com IA embarcada vendendo por você. O RedPower Full é o programa que coloca essa operação no ar{" "}
           <strong className="font-semibold text-bege-texto">
@@ -117,7 +117,7 @@ export function Hero() {
             <p className="mt-6 max-w-md text-base leading-relaxed text-camurca-texto">
               A Redrive é o{" "}
               <strong className="font-semibold text-bege-texto">
-                Sistema Operacional de Vendas com IA
+                Sistema Operacional de Vendas Agênticas
               </strong>
               : leads, atendimento, CRM e automações conectados, com IA embarcada vendendo por você. O RedPower Full é o programa que coloca essa operação no ar{" "}
               <strong className="font-semibold text-bege-texto">

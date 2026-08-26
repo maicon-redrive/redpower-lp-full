@@ -3,7 +3,7 @@ import { GLANCYR_MEDIUM_EXPANDED } from "@/lib/typography";
 const AUDIENCES = [
   {
     title: "PARA QUEM ESTÁ CHEGANDO AGORA",
-    body: "Você recebe o Sistema Operacional de Vendas com IA e o método juntos: um ano de Redrive + as 8 aulas do CEO. Começa com a operação montada — do zero à primeira venda — sem configurar nada sozinho.",
+    body: "Você recebe o Sistema Operacional de Vendas Agênticas e o método juntos: um ano de Redrive + as 8 aulas do CEO. Começa com a operação montada — do zero à primeira venda — sem configurar nada sozinho.",
   },
   {
     title: "PARA QUEM QUER ESTRUTURA DESDE O DIA 1",
@@ -47,7 +47,7 @@ export function WhatIsRedPower() {
               <p>
                 A <strong className="font-extrabold text-bege-texto">Redrive</strong> é o{" "}
                 <strong className="font-extrabold text-bege-texto">
-                  Sistema Operacional de Vendas com IA
+                  Sistema Operacional de Vendas Agênticas
                 </strong>{" "}
                 — leads, atendimento, CRM, automações e jornadas conectados, com IA embarcada
                 vendendo em cada etapa. O{" "}

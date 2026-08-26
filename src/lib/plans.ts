@@ -87,7 +87,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
     // R$997 (RedUp) + 12 × R$697 (Redrive Enterprise) = R$9.361
     priceCents: 99700 + REDRIVE_COMBO_VALUE_CENTS,
     tagline:
-      "O programa completo para começar: o método do CEO + um ano de Redrive, o Sistema Operacional de Vendas com IA. Do conceito à primeira venda, sem intervalo.",
+      "O programa completo para começar: o método do CEO + um ano de Redrive, o Sistema Operacional de Vendas Agênticas. Do conceito à primeira venda, sem intervalo.",
     includesImplementation: false,
     requiresShippingAddress: true,
     requiresOnboardingScheduling: false,
@@ -96,7 +96,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
       "Tudo do RedUp incluso",
       "Método Redrive — 8 aulas com o Daniel",
       "Livros Magia da Conversa e Chat First (impresso e e-book)",
-      "12 meses de Redrive Enterprise — o Sistema Operacional de Vendas com IA",
+      "12 meses de Redrive Enterprise — o Sistema Operacional de Vendas Agênticas",
       "Acesso vitalício ao método",
     ],
     ctaLabel: "Garantir o RedUp Full",
@@ -123,7 +123,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
       "Implantação técnica da plataforma",
       "Agentes de IA configurados para vender",
       "Treinamento operacional da equipe",
-      "12 meses de Redrive Enterprise — o Sistema Operacional de Vendas com IA",
+      "12 meses de Redrive Enterprise — o Sistema Operacional de Vendas Agênticas",
       "Acesso vitalício ao método",
     ],
     ctaLabel: "Quero o RedMax Full",
@@ -160,7 +160,7 @@ export function installmentCents(plan: Plan): number {
 }
 
 export const COMPARISON_ROWS: { label: string; redup: boolean; redmax: boolean }[] = [
-  { label: "12 meses de Redrive Enterprise (Sistema Operacional de Vendas com IA)", redup: true, redmax: true },
+  { label: "12 meses de Redrive Enterprise (Sistema Operacional de Vendas Agênticas)", redup: true, redmax: true },
   { label: "Método Redrive — 8 aulas com o Daniel", redup: true, redmax: true },
   { label: "+ de 3h de conteúdo conceitual e estratégico", redup: true, redmax: true },
   { label: "Livro Magia da Conversa (impresso e e-book)", redup: true, redmax: true },

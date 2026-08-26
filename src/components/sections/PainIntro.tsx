@@ -17,7 +17,7 @@ export function PainIntro() {
           <div className="mt-6 space-y-4 text-base leading-relaxed text-camurca-texto">
             <p>
               A <strong className="font-semibold text-bege-texto">Redrive</strong> é o{" "}
-              <strong className="font-semibold text-bege-texto">Sistema Operacional de Vendas com IA</strong>.{" "}
+              <strong className="font-semibold text-bege-texto">Sistema Operacional de Vendas Agênticas</strong>.{" "}
               <strong className="font-semibold text-bege-texto">
                 Geração de leads, ativação, atendimento com IA, CRM, automações, jornadas,
                 previsibilidade — tudo conectado.
@@ -30,7 +30,7 @@ export function PainIntro() {
             </p>
             <p className="font-semibold text-bege-texto">
               Por isso o RedPower Full é um programa:
-              <br />o Sistema Operacional de Vendas com IA e o método para operá-lo, juntos desde o dia um.
+              <br />o Sistema Operacional de Vendas Agênticas e o método para operá-lo, juntos desde o dia um.
             </p>
           </div>
         </div>

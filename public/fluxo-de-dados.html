@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RedPower — Fluxo de Dados</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'default'});</script>
+<style>
+  :root {
+    --red: #CC0000;
+    --cherry: #3A0D0B;
+    --surface: #FAFAF8;
+    --surface-alt: #F3EFEB;
+    --card: #FFFFFF;
+    --text: #2C1810;
+    --text-2: #8A7A6E;
+    --text-3: #B5A89E;
+    --border: #E8E0D8;
+    --blue: #4A7FB5;
+    --blue-light: #EBF2F9;
+    --green: #3D8B37;
+    --green-light: #EDF7EC;
+    --orange: #CC7700;
+    --orange-light: #FFF6E8;
+    --code-bg: #F5F0EB;
+    --phase-line: #D8CFC6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #12090A; --surface-alt: #1E100E; --card: #1A0E0C;
+      --text: #EFE9E1; --text-2: #ABA097; --text-3: #6E6058;
+      --border: #2E1E18; --blue: #6AA0D4; --blue-light: #1A2530;
+      --green: #5CB855; --green-light: #152015; --orange: #FFAA33;
+      --orange-light: #251A08; --code-bg: #1E1410; --phase-line: #3A2A20;
+      --card: #1A100E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #12090A; --surface-alt: #1E100E; --card: #1A0E0C;
+    --text: #EFE9E1; --text-2: #ABA097; --text-3: #6E6058;
+    --border: #2E1E18; --blue: #6AA0D4; --blue-light: #1A2530;
+    --green: #5CB855; --green-light: #152015; --orange: #FFAA33;
+    --orange-light: #251A08; --code-bg: #1E1410; --phase-line: #3A2A20;
+    --card: #1A100E;
+  }
+  :root[data-theme="light"] {
+    --red: #CC0000; --cherry: #3A0D0B; --surface: #FAFAF8;
+    --surface-alt: #F3EFEB; --card: #FFFFFF; --text: #2C1810;
+    --text-2: #8A7A6E; --text-3: #B5A89E; --border: #E8E0D8;
+    --blue: #4A7FB5; --blue-light: #EBF2F9; --green: #3D8B37;
+    --green-light: #EDF7EC; --orange: #CC7700; --orange-light: #FFF6E8;
+    --code-bg: #F5F0EB; --phase-line: #D8CFC6; --card: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--surface); color: var(--text);
+    line-height: 1.6; font-size: 15px; -webkit-font-smoothing: antialiased;
+  }
+  .doc { max-width: 820px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 2px solid var(--red); }
+  .header h1 { font-size: 32px; font-weight: 800; color: var(--red); margin-bottom: 4px; }
+  .header p { color: var(--text-2); font-size: 14px; }
+
+  /* Phase */
+  .phase { position: relative; margin-bottom: 40px; padding-left: 36px; }
+  .phase::before {
+    content: ''; position: absolute; left: 13px; top: 36px; bottom: -40px;
+    width: 2px; background: var(--phase-line);
+  }
+  .phase:last-of-type::before { display: none; }
+  .phase-dot {
+    position: absolute; left: 4px; top: 8px; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--red); border: 3px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--red);
+  }
+  .phase-title {
+    font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    text-wrap: balance;
+  }
+  .phase-desc { font-size: 13px; color: var(--text-2); margin-bottom: 16px; }
+
+  /* Cards */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px; margin-bottom: 12px;
+  }
+  .card h4 {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; margin-bottom: 10px;
+  }
+  .card h4.cap-blue { color: var(--blue); }
+  .card h4.cap-green { color: var(--green); }
+  .card h4.cap-orange { color: var(--orange); }
+  .card h4.cap-red { color: var(--red); }
+
+  .data-row {
+    display: flex; gap: 8px; align-items: baseline;
+    padding: 6px 0; border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .data-row:last-child { border-bottom: none; }
+  .data-label { flex: 0 0 180px; font-weight: 600; color: var(--text); }
+  .data-dest { flex: 0 0 140px; color: var(--blue); font-size: 13px; font-weight: 500; }
+  .data-why { flex: 1; color: var(--text-2); font-size: 13px; }
+
+  code {
+    background: var(--code-bg); padding: 1px 5px; border-radius: 3px;
+    font-size: 12px; font-family: "SF Mono", "Fira Code", Menlo, monospace;
+  }
+
+  .arrow-down {
+    display: flex; justify-content: center; padding: 8px 0;
+    color: var(--text-3); font-size: 20px;
+  }
+
+  /* UTM table */
+  .table-wrap { overflow-x: auto; margin: 12px 0; border-radius: 6px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  thead th {
+    background: var(--cherry); color: #F5E8E0; font-weight: 600;
+    padding: 8px 12px; text-align: left; font-size: 12px; letter-spacing: 0.3px;
+  }
+  tbody td { padding: 7px 12px; border-top: 1px solid var(--border); }
+  tbody tr:nth-child(even) { background: var(--surface-alt); }
+
+  .callout {
+    border-left: 3px solid var(--blue); background: var(--blue-light);
+    padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px;
+  }
+  .callout strong { color: var(--blue); }
+  .callout-green {
+    border-left: 3px solid var(--green); background: var(--green-light);
+    padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px;
+  }
+  .callout-green strong { color: var(--green); }
+  .callout-orange {
+    border-left: 3px solid var(--orange); background: var(--orange-light);
+    padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 14px;
+  }
+  .callout-orange strong { color: var(--orange); }
+
+  ul { padding-left: 18px; margin: 8px 0; }
+  li { margin-bottom: 4px; font-size: 14px; }
+
+  .section-title {
+    font-size: 22px; font-weight: 800; color: var(--red);
+    margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  /* Mermaid */
+  pre.mermaid {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px; margin: 16px 0; overflow-x: auto;
+  }
+
+  @media (max-width: 600px) {
+    .data-row { flex-wrap: wrap; }
+    .data-label { flex: 1 1 100%; }
+    .data-dest { flex: 0 0 auto; }
+    .data-why { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="header">
+    <h1>RedPower — Fluxo de Dados</h1>
+    <p>Mapeamento completo: de onde o usuario vem, o que ele faz, para onde cada dado vai e por que</p>
+    <p style="font-size:12px; color:var(--text-3); margin-top:4px;">v1.0 — Julho 2026</p>
+  </div>
+
+  <!-- ============ VISÃO GERAL ============ -->
+  <pre class="mermaid">
+flowchart TD
+    A["Ads / Organico / Indicacao\n(com UTMs)"] --> B["Landing Page\nredpower.redrive.com.br"]
+    B --> C{"Escolhe plano"}
+    C -->|RedUp R$997| D["Checkout"]
+    C -->|RedMax R$1.997| D
+    C -->|RedMax Revisao R$999| E["Validacao de elegibilidade\n(login Redrive 6+ meses)"]
+    E -->|Elegivel| D
+    E -->|Nao elegivel| B
+    D --> F["Gateway de Pagamento\n(Stripe / Pagar.me)"]
+    F -->|Aprovado| G["Conta criada\nE-mail de boas-vindas"]
+    F -->|Recusado| D
+    G --> H["Plataforma /metodo\n(aulas + chat + notas)"]
+    H --> I["Analytics e Metricas\n(uso, progresso, engajamento)"]
+    H --> J{"Concluiu curso?"}
+    J -->|Sim| K["Upsell Implantacao\n(se RedUp)"]
+    J -->|Nao| L["E-mails de reengajamento"]
+    L --> H
+    K --> D
+
+    style A fill:#CC0000,color:#fff,stroke:none
+    style D fill:#3A0D0B,color:#fff,stroke:none
+    style F fill:#4A7FB5,color:#fff,stroke:none
+    style G fill:#3D8B37,color:#fff,stroke:none
+    style H fill:#CC0000,color:#fff,stroke:none
+    style I fill:#CC7700,color:#fff,stroke:none
+  </pre>
+
+  <!-- ============ FASE 1: AQUISICAO ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 1 — Aquisicao (trafego e UTMs)</div>
+    <div class="phase-desc">O usuario chega na LP via anuncio, organico, indicacao ou e-mail. Cada origem deve carregar UTMs para rastrear de onde veio a conversao.</div>
+
+    <div class="card">
+      <h4 class="cap-blue">Estrutura de UTMs recomendada</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parametro</th><th>Uso</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td><code>utm_source</code></td><td>De onde veio o trafego</td><td><code>meta</code>, <code>google</code>, <code>youtube</code>, <code>instagram</code>, <code>email</code>, <code>indicacao</code></td></tr>
+            <tr><td><code>utm_medium</code></td><td>Tipo de midia</td><td><code>cpc</code>, <code>organic</code>, <code>social</code>, <code>email</code>, <code>referral</code></td></tr>
+            <tr><td><code>utm_campaign</code></td><td>Nome da campanha</td><td><code>lancamento-jul26</code>, <code>reengajamento-q3</code>, <code>webinar-daniel</code></td></tr>
+            <tr><td><code>utm_content</code></td><td>Variacao do criativo</td><td><code>video-depoimento</code>, <code>carrossel-metodo</code>, <code>story-livro</code></td></tr>
+            <tr><td><code>utm_term</code></td><td>Palavra-chave (search)</td><td><code>vendas+whatsapp</code>, <code>metodo+redrive</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 class="cap-blue">Exemplos de URLs com UTMs</h4>
+      <p style="font-size:13px; margin-bottom:8px; word-break:break-all;">
+        <code>redpower.redrive.com.br?utm_source=meta&utm_medium=cpc&utm_campaign=lancamento-jul26&utm_content=video-depoimento</code>
+      </p>
+      <p style="font-size:13px; margin-bottom:8px; word-break:break-all;">
+        <code>redpower.redrive.com.br?utm_source=email&utm_medium=email&utm_campaign=reengajamento-q3</code>
+      </p>
+      <p style="font-size:13px; word-break:break-all;">
+        <code>redpower.redrive.com.br?utm_source=indicacao&utm_medium=referral&utm_campaign=programa-afiliados&utm_content=link-carlos</code>
+      </p>
+    </div>
+
+    <div class="card">
+      <h4 class="cap-green">Dados capturados na chegada</h4>
+      <div class="data-row">
+        <span class="data-label">UTMs completas</span>
+        <span class="data-dest">→ Cookie + Backend</span>
+        <span class="data-why">Atribuicao de conversao — saber qual campanha gerou a venda</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Referrer</span>
+        <span class="data-dest">→ Backend</span>
+        <span class="data-why">Fallback quando nao ha UTM — identifica origem organica</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Device / Browser</span>
+        <span class="data-dest">→ Analytics</span>
+        <span class="data-why">Otimizar experiencia por dispositivo (mobile vs desktop)</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Timestamp de entrada</span>
+        <span class="data-dest">→ Analytics</span>
+        <span class="data-why">Calcular tempo ate conversao e janelas de retargeting</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label"><code>fbclid</code> / <code>gclid</code></span>
+        <span class="data-dest">→ Cookie + Backend</span>
+        <span class="data-why">Conversao API do Meta/Google — atribuicao server-side</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Implementacao:</strong> Salvar UTMs em cookie de 1a parte (30 dias) no primeiro acesso. Se o usuario voltar sem UTMs, manter os originais (first-touch). Enviar junto com o pedido no checkout para atribuicao correta.
+    </div>
+  </div>
+
+  <!-- ============ FASE 2: LANDING PAGE ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 2 — Landing Page (engajamento)</div>
+    <div class="phase-desc">O usuario navega a LP, le as secoes, interage com FAQ e pricing. Cada interacao e um sinal de intencao.</div>
+
+    <div class="card">
+      <h4 class="cap-orange">Eventos a rastrear na LP</h4>
+      <div class="data-row">
+        <span class="data-label">Scroll depth (25/50/75/100%)</span>
+        <span class="data-dest">→ GA4 + Meta Pixel</span>
+        <span class="data-why">Medir interesse — quem rolou 75%+ e audiencia quente pra retargeting</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Clique em CTA (qual botao)</span>
+        <span class="data-dest">→ GA4 + Meta Pixel</span>
+        <span class="data-why">Identificar qual secao converte mais e otimizar posicionamento</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Visualizacao secao Pricing</span>
+        <span class="data-dest">→ GA4 + Meta Pixel</span>
+        <span class="data-why">Evento de "ViewContent" — audiencia com intencao de compra</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Abertura de FAQ</span>
+        <span class="data-dest">→ GA4</span>
+        <span class="data-why">Identificar duvidas mais frequentes para otimizar copy</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Clique no card RedMax Revisao</span>
+        <span class="data-dest">→ GA4 + Meta Pixel</span>
+        <span class="data-why">Sinal de que o usuario ja e cliente Redrive — segmentacao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Tempo na pagina</span>
+        <span class="data-dest">→ GA4</span>
+        <span class="data-why">Correlacionar com conversao — tempo ideal vs bounce</span>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <strong>Meta Pixel — eventos recomendados:</strong> <code>PageView</code> (automatico), <code>ViewContent</code> (secao Pricing), <code>AddToCart</code> (clique em CTA de plano), <code>InitiateCheckout</code> (abriu checkout), <code>Purchase</code> (pagamento confirmado). Enviar valor e moeda em cada evento pra otimizar campanhas por ROAS.
+    </div>
+  </div>
+
+  <!-- ============ FASE 3: CHECKOUT ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 3 — Checkout e pagamento</div>
+    <div class="phase-desc">O usuario escolheu um plano e inicia o processo de compra. Aqui mora a maior perda de conversao — cada campo e cada segundo conta.</div>
+
+    <div class="card">
+      <h4 class="cap-red">Dados coletados no checkout</h4>
+      <div class="data-row">
+        <span class="data-label">Nome completo</span>
+        <span class="data-dest">→ Backend + Redrive (CRM)</span>
+        <span class="data-why">Identificacao do aluno e personalizacao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">E-mail</span>
+        <span class="data-dest">→ Backend + Redrive (CRM) + E-mail mkt</span>
+        <span class="data-why">Login, comunicacao, sequencias automaticas</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Telefone (WhatsApp)</span>
+        <span class="data-dest">→ Backend + Redrive (CRM)</span>
+        <span class="data-why">Onboarding RedMax, suporte, reengajamento</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">CPF/CNPJ</span>
+        <span class="data-dest">→ Gateway + NF</span>
+        <span class="data-why">Emissao de nota fiscal e antifraude</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Endereco de entrega</span>
+        <span class="data-dest">→ Backend + Logistica</span>
+        <span class="data-why">Envio dos livros fisicos (todos os planos)</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Plano escolhido</span>
+        <span class="data-dest">→ Backend + Redrive (CRM)</span>
+        <span class="data-why">Definir acesso, elegibilidade de upsell, segmentacao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Forma de pagamento</span>
+        <span class="data-dest">→ Gateway</span>
+        <span class="data-why">Processar cobranca (cartao ate 6x, Pix, boleto)</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">UTMs (do cookie)</span>
+        <span class="data-dest">→ Backend</span>
+        <span class="data-why">Vincular venda a origem — atribuicao de conversao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Upsell aceito? (order bump)</span>
+        <span class="data-dest">→ Backend + Redrive (CRM)</span>
+        <span class="data-why">Se RedUp aceitou upgrade para RedMax no checkout</span>
+      </div>
+    </div>
+
+    <pre class="mermaid">
+flowchart LR
+    A["Checkout Form"] --> B["Gateway\n(Stripe/Pagar.me)"]
+    B -->|Aprovado| C["Webhook\npagamento confirmado"]
+    B -->|Recusado| D["Retry / outro metodo"]
+    C --> E["Cria conta no backend"]
+    C --> F["Dispara e-mail boas-vindas"]
+    C --> G["Envia evento Purchase\n(Meta Pixel + GA4)"]
+    C --> H["Atualiza Redrive CRM\n(plano + UTMs + data)"]
+    C --> I["Fila de envio\nlivros fisicos"]
+
+    style B fill:#4A7FB5,color:#fff,stroke:none
+    style C fill:#3D8B37,color:#fff,stroke:none
+    </pre>
+  </div>
+
+  <!-- ============ FASE 4: POS-COMPRA ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 4 — Pos-compra (ativacao)</div>
+    <div class="phase-desc">O usuario pagou. Agora precisa ser ativado — acessar a plataforma, assistir a primeira aula, interagir com o agente.</div>
+
+    <div class="card">
+      <h4 class="cap-green">Sequencia de e-mails e dados enviados</h4>
+      <div class="data-row">
+        <span class="data-label">E-mail 1: Boas-vindas (0h)</span>
+        <span class="data-dest">→ E-mail mkt</span>
+        <span class="data-why">Link de acesso, credenciais, sem upsell — foco em ativar</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">E-mail 2: Primeira aula (24h)</span>
+        <span class="data-dest">→ E-mail mkt</span>
+        <span class="data-why">Verificar se ja acessou; se nao, reforcar o link</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">E-mail 3: Dica + Upsell (7d)</span>
+        <span class="data-dest">→ E-mail mkt</span>
+        <span class="data-why">"Ja comecou a aplicar? Conheca a Implantacao" (se RedUp)</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">E-mail 4: Meio do curso (14d)</span>
+        <span class="data-dest">→ E-mail mkt</span>
+        <span class="data-why">Baseado no progresso real — se parou na aula 3, reengajar</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">E-mail 5: Conclusao</span>
+        <span class="data-dest">→ E-mail mkt</span>
+        <span class="data-why">Parabens + CTA forte para Implantacao (se RedUp)</span>
+      </div>
+    </div>
+
+    <div class="callout-green">
+      <strong>Dado essencial para e-mails inteligentes:</strong> O backend precisa expor o progresso do aluno (qual aula esta, % assistido) para a ferramenta de e-mail. Sem isso, todos recebem a mesma sequencia generica. Com isso, quem parou na aula 3 recebe "Voce parou na Janela de Atencao — e uma das mais importantes".
+    </div>
+  </div>
+
+  <!-- ============ FASE 5: PLATAFORMA ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 5 — Plataforma do aluno (consumo)</div>
+    <div class="phase-desc">O aluno acessa /metodo, assiste aulas, interage com o agente, faz anotacoes. Cada interacao gera dados que precisam ser persistidos.</div>
+
+    <div class="card">
+      <h4 class="cap-red">Dados de video e progresso</h4>
+      <div class="data-row">
+        <span class="data-label">Posicao do video (segundos)</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Retomar de onde parou em qualquer dispositivo</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">% assistido por aula</span>
+        <span class="data-dest">→ Backend (Analytics)</span>
+        <span class="data-why">Metricas de consumo — identificar aulas com abandono</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Aula marcada como concluida</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Progresso do curso, trigger de e-mails, elegibilidade de upsell</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Vezes que abriu cada aula</span>
+        <span class="data-dest">→ Backend (Analytics)</span>
+        <span class="data-why">Revisitas indicam conteudo valioso — informar producao</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 class="cap-red">Dados de chat com o agente</h4>
+      <div class="data-row">
+        <span class="data-label">Mensagens do usuario</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Historico persistente — nunca perder, mesmo ao reassistir</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Gatilhos disparados</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Saber quais triggers o aluno ja recebeu em cada sessao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Respostas a gatilhos</span>
+        <span class="data-dest">→ Backend (Analytics)</span>
+        <span class="data-why">Taxa de engajamento — gatilhos que geram conversa vs ignorados</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Mensagens salvas como nota</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Conteudo que o aluno considerou valioso o suficiente para anotar</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Modo de uso (sidebar vs fullscreen)</span>
+        <span class="data-dest">→ Backend (Analytics)</span>
+        <span class="data-why">Otimizar UX — qual interface e mais usada</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 class="cap-red">Dados de notas</h4>
+      <div class="data-row">
+        <span class="data-label">Titulo + conteudo da nota</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Persistir entre sessoes e dispositivos</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Marcador (importante/ideia/acao/duvida)</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Categorizacao das notas pelo aluno</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Ordem das notas</span>
+        <span class="data-dest">→ Backend (API)</span>
+        <span class="data-why">Manter organizacao personalizada do aluno</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Quantidade por tipo</span>
+        <span class="data-dest">→ Backend (Analytics)</span>
+        <span class="data-why">Alunos que anotam "acao" estao mais propensos a implementar</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FASE 6: ANALYTICS ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 6 — Analytics e inteligencia</div>
+    <div class="phase-desc">Todos os dados de uso alimentam dashboards internos para decisoes de produto, marketing e CS.</div>
+
+    <div class="card">
+      <h4 class="cap-orange">Metricas de negocio derivadas</h4>
+      <div class="data-row">
+        <span class="data-label">Taxa de ativacao</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">% de compradores que acessaram a plataforma em 48h</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Taxa de conclusao do curso</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">% que completou as 8 aulas — correlacionar com upsell</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Tempo medio ate conclusao</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">Calibrar sequencia de e-mails e timing de upsell</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Engajamento por aula</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">Aulas com abandono = conteudo a melhorar</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Conversao de upsell</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">% de RedUp que fizeram upgrade para RedMax/Implantacao</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">CAC por canal (UTM)</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">Custo de aquisicao por utm_source — otimizar investimento</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">LTV por plano</span>
+        <span class="data-dest">→ Dashboard admin</span>
+        <span class="data-why">Valor total do cliente incluindo upsells — justificar CAC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FASE 7: UPSELL ============ -->
+  <div class="phase">
+    <div class="phase-dot"></div>
+    <div class="phase-title">Fase 7 — Upsell e retencao</div>
+    <div class="phase-desc">Com os dados de uso, o sistema decide quando e como oferecer upgrades.</div>
+
+    <pre class="mermaid">
+flowchart TD
+    A["Aluno RedUp"] --> B{"Progresso no curso?"}
+    B -->|Concluiu 8 aulas| C["E-mail: Parabens + CTA Implantacao"]
+    B -->|Parou no meio| D["E-mail: Reengajamento contextual"]
+    B -->|Ativo, assistindo| E["Banner na area do membro"]
+
+    C --> F{"Tem 6+ meses\nde Redrive?"}
+    E --> F
+    F -->|Sim| G["Oferecer RedMax Revisao\nR$ 999"]
+    F -->|Nao| H["Oferecer Implantacao avulsa\n(ao contratar, vira RedMax)"]
+    G --> I["Checkout\n(com UTM utm_source=plataforma\nutm_campaign=upsell-revisao)"]
+    H --> I
+
+    style C fill:#3D8B37,color:#fff,stroke:none
+    style D fill:#CC7700,color:#fff,stroke:none
+    style G fill:#CC0000,color:#fff,stroke:none
+    style H fill:#CC0000,color:#fff,stroke:none
+    </pre>
+
+    <div class="callout">
+      <strong>UTMs internas para upsell:</strong> Toda oferta de upsell dentro da plataforma ou nos e-mails deve carregar UTMs proprias para medir conversao separadamente do trafego frio. Exemplo: <code>utm_source=plataforma&utm_medium=banner&utm_campaign=upsell-implantacao</code> ou <code>utm_source=email&utm_medium=email&utm_campaign=pos-conclusao-upsell</code>.
+    </div>
+  </div>
+
+  <!-- ============ DESTINO DOS DADOS ============ -->
+  <h2 class="section-title">Mapa de destino dos dados</h2>
+  <p style="margin-bottom:16px; font-size:14px; color:var(--text-2);">Cada sistema recebe dados especificos. Nenhum dado deve ficar apenas em localStorage em producao.</p>
+
+  <div class="card">
+    <h4 class="cap-blue">Backend / Banco de dados (Supabase ou equivalente)</h4>
+    <ul>
+      <li>Perfil do usuario (nome, e-mail, telefone, plano, data de compra)</li>
+      <li>Progresso do curso (posicao de video, aulas concluidas, timestamps)</li>
+      <li>Historico de chat completo (mensagens do usuario + gatilhos, por aula, por sessao)</li>
+      <li>Notas (titulo, conteudo, marcador, ordem, por aula)</li>
+      <li>UTMs da aquisicao (vinculadas ao usuario)</li>
+      <li>Dados de uso/analytics (eventos, heartbeats, metricas agregadas)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4 class="cap-blue">Gateway de pagamento (Stripe / Pagar.me)</h4>
+    <ul>
+      <li>Dados de cobranca (cartao tokenizado, Pix, boleto)</li>
+      <li>Historico de transacoes e status</li>
+      <li>Webhooks de confirmacao/cancelamento/estorno</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4 class="cap-blue">Redrive (CRM)</h4>
+    <p style="font-size:13px; color:var(--text-2); font-style:italic; margin-bottom:8px;">Os contatos ja existem dentro da Redrive — o fluxo atualiza registros existentes, nao cria novos.</p>
+    <ul>
+      <li>Contato ja existente atualizado com plano comprado + data + valor</li>
+      <li>UTMs da aquisicao vinculadas ao contato (para segmentacao de campanha)</li>
+      <li>Status atualizado: ativo, concluiu curso, fez upgrade, inativo</li>
+      <li>Score de engajamento (derivado dos dados de uso)</li>
+      <li>Historico de interacoes com o RedPower registrado no contato</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4 class="cap-blue">Ferramenta de e-mail (ActiveCampaign, Resend, etc.)</h4>
+    <ul>
+      <li>E-mail + nome + plano (para segmentacao)</li>
+      <li>Tags: "concluiu-curso", "parou-aula-3", "elegivel-revisao"</li>
+      <li>Progresso do curso (via webhook do backend) para e-mails contextuais</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4 class="cap-blue">Analytics (GA4 + Meta Pixel)</h4>
+    <ul>
+      <li>Eventos de LP: PageView, ViewContent, scroll, cliques em CTA</li>
+      <li>Eventos de checkout: InitiateCheckout, Purchase (com valor)</li>
+      <li><code>fbclid</code> / <code>gclid</code> para Conversions API (server-side)</li>
+      <li>Audiencias de retargeting: visitou LP, clicou pricing, abandonou checkout</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4 class="cap-blue">Logistica (envio de livros)</h4>
+    <ul>
+      <li>Endereco de entrega + nome do destinatario</li>
+      <li>Plano (define quais livros enviar — todos os planos enviam fisico)</li>
+      <li>Codigo de rastreio → e-mail para o aluno</li>
+    </ul>
+  </div>
+
+  <!-- ============ CONVERSIONS API ============ -->
+  <h2 class="section-title">Conversions API (server-side tracking)</h2>
+  <p style="margin-bottom:16px;">Com o fim dos cookies de terceiros, rastrear conversoes apenas pelo pixel do navegador perde eficacia. A Conversions API (CAPI) envia eventos do servidor diretamente para Meta e Google, garantindo atribuicao mesmo com bloqueadores.</p>
+
+  <pre class="mermaid">
+flowchart LR
+    A["Navegador do usuario"] -->|Pixel JS| B["Meta Pixel\n(client-side)"]
+    A -->|gtag.js| C["GA4\n(client-side)"]
+    D["Seu Backend"] -->|CAPI| E["Meta Conversions API\n(server-side)"]
+    D -->|Measurement Protocol| F["GA4\n(server-side)"]
+
+    B -.->|"Pode ser bloqueado\npor ad blockers"| G["Dados parciais"]
+    E -->|"Sempre chega"| H["Dados completos"]
+
+    style D fill:#3A0D0B,color:#fff,stroke:none
+    style E fill:#4A7FB5,color:#fff,stroke:none
+    style F fill:#4A7FB5,color:#fff,stroke:none
+    style G fill:#CC7700,color:#fff,stroke:none
+    style H fill:#3D8B37,color:#fff,stroke:none
+  </pre>
+
+  <div class="card">
+    <h4 class="cap-green">Eventos a enviar via CAPI</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Evento</th><th>Quando dispara</th><th>Dados enviados</th></tr></thead>
+        <tbody>
+          <tr><td><code>Purchase</code></td><td>Webhook de pagamento confirmado</td><td>e-mail (hash), valor, moeda, plano, UTMs, fbclid</td></tr>
+          <tr><td><code>InitiateCheckout</code></td><td>Abertura do formulario de checkout</td><td>plano selecionado, valor, UTMs</td></tr>
+          <tr><td><code>Lead</code></td><td>Conta criada (mesmo sem pagar)</td><td>e-mail (hash), plano de interesse</td></tr>
+          <tr><td><code>CompleteRegistration</code></td><td>Primeiro login na plataforma</td><td>e-mail (hash), plano ativo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ AUDIENCIAS ============ -->
+  <h2 class="section-title">Audiencias de retargeting (Meta Ads)</h2>
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Audiencia</th><th>Criterio</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td>Visitou LP (nao comprou)</td><td>PageView sem Purchase (7d)</td><td>Retargeting com depoimentos ou urgencia</td></tr>
+          <tr><td>Viu Pricing (nao comprou)</td><td>ViewContent sem Purchase (14d)</td><td>Retargeting com comparativo de planos</td></tr>
+          <tr><td>Abandonou checkout</td><td>InitiateCheckout sem Purchase (7d)</td><td>Retargeting com desconto ou Pix</td></tr>
+          <tr><td>Compradores RedUp</td><td>Purchase com plano=redup</td><td>Lookalike + excluir de campanhas de aquisicao</td></tr>
+          <tr><td>Compradores RedMax</td><td>Purchase com plano=redmax</td><td>Excluir de tudo — ja sao clientes completos</td></tr>
+          <tr><td>Alunos que concluiram</td><td>Custom event: CourseCompleted</td><td>Upsell de Implantacao via ads (se RedUp)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid var(--border);">
+    <p style="font-size:13px; color:var(--text-3);">RedPower — Fluxo de Dados v1.0 &nbsp;|&nbsp; Julho 2026 &nbsp;|&nbsp; Redrive</p>
+  </div>
+
+</div>
+</body>
+</html>

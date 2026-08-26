@@ -1,0 +1,17 @@
+{
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "refactor", "section": "Refactoring" },
+    { "type": "style", "section": "Styling" },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "chore", "section": "Chores" },
+    { "type": "test", "section": "Tests", "hidden": true },
+    { "type": "build", "section": "Build System", "hidden": true },
+    { "type": "ci", "hidden": true }
+  ],
+  "tag-prefix": "v",
+  "commitUrlFormat": "https://github.com/redrive-technology/redpower-lp/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/redrive-technology/redpower-lp/compare/{{previousTag}}...{{currentTag}}",
+  "issueUrlFormat": "https://github.com/redrive-technology/redpower-lp/issues/{{id}}"
+}

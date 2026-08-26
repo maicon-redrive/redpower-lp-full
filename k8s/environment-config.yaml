@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redpower-lp-environment-config
+  namespace: marketing
+data:
+  HOSTNAME: "0.0.0.0"
+  PORT: "3000"
+  # NÃO colocar segredos aqui. Defina via Secret do k8s ou nas env vars do provedor (Vercel).
+  NEXT_PUBLIC_SUPABASE_URL: "https://SEU-PROJETO.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: "REPLACE_ME"
+  SUPABASE_SERVICE_ROLE_KEY: "REPLACE_ME"
+  KIWIFY_WEBHOOK_TOKEN: ""

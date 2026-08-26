@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redpower-lp-ingress
+  namespace: marketing
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: redpower-lp-service
+      port:
+        number: 80
+  rules:
+    - host: redpower.redrive.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redpower-lp-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - redpower.redrive.com.br

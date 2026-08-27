@@ -41,9 +41,14 @@ const REDMAX_RIGHT = [
   "Acesso vitalício ao método",
 ];
 
-function PriceBlock({ reais, centavos, color }: { reais: string; centavos: string; color: string }) {
+function PriceBlock({ reais, centavos, color, prefix }: { reais: string; centavos: string; color: string; prefix?: string }) {
   return (
     <div className="flex" style={{ color }}>
+      {prefix && (
+        <span className="font-display self-start" style={{ fontSize: 22, lineHeight: 1, marginRight: 8, marginTop: 4, ...GLANCYR_LIGHT_CONDENSED }}>
+          {prefix}
+        </span>
+      )}
       <span className="font-display self-start" style={{ fontSize: 35, lineHeight: 1, marginRight: 5, ...GLANCYR_LIGHT_CONDENSED }}>
         R$
       </span>
@@ -58,12 +63,12 @@ function PriceBlock({ reais, centavos, color }: { reais: string; centavos: strin
 }
 
 function PriceTerms({ plan }: { plan: Plan }) {
-  const inst = formatBRL(installmentCents(plan));
+  const total = formatBRL(plan.priceCents);
   const cash = formatBRL(cashPriceCents(plan));
   return (
     <>
       <li>
-        • {plan.installments}x de R$ {inst.reais},{inst.centavos} sem juros
+        • Total: R$ {total.reais},{total.centavos} em {plan.installments}x sem juros
       </li>
       <li>
         • À vista R$ {cash.reais},{cash.centavos} ({plan.cashDiscountPct}% de desconto)
@@ -265,8 +270,9 @@ export function Pricing() {
   // Combos são a oferta principal na LP /full (RedUp Full / RedMax Full).
   const redup = PLANS["redup-full"];
   const redmax = PLANS["redmax-full"];
-  const priceRedup = formatBRL(redup.priceCents);
-  const priceRedmax = formatBRL(redmax.priceCents);
+  // Valor em destaque = mensalidade (parcela 12x); total e à vista vão nos detalhes.
+  const priceRedup = formatBRL(installmentCents(redup));
+  const priceRedmax = formatBRL(installmentCents(redmax));
 
   return (
     <section id="planos" className="relative px-6 py-28 lg:px-16 lg:py-36">
@@ -324,7 +330,7 @@ export function Pricing() {
                 <div className="mt-6 pt-4"><FeatureList items={REDUP_RIGHT} color="var(--mogno)" lastItalic="– Implantação não inclusa" /></div>
               </div>
               <div className="flex flex-col items-end px-10 py-10">
-                <PriceBlock reais={priceRedup.reais} centavos={priceRedup.centavos} color="var(--bege-texto)" />
+                <PriceBlock prefix="12x de" reais={priceRedup.reais} centavos={priceRedup.centavos} color="var(--bege-texto)" />
                 <ul className="mt-2 self-end space-y-0.5 text-xs text-mogno" style={{ paddingRight: 68 }}><PriceTerms plan={redup} /></ul>
                 <a href={getCheckoutUrl(redup.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-[284px] items-center justify-center gap-3 rounded-[19px] bg-vermelho-redrive font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redup.ctaLabel} <span className="text-lg">→</span></a>
                 <p className="mt-2 self-end text-[10px] text-mogno" style={{ paddingRight: 68 }}>✓ {redup.guaranteeDays} dias de garantia · Sem burocracia</p>
@@ -337,7 +343,7 @@ export function Pricing() {
               <p className="mt-3 font-display text-bege-texto" style={{ fontSize: 15, lineHeight: "22px", ...GLANCYR_REGULAR }}>{redup.tagline}</p>
               <div className="mt-6 w-full text-left"><FeatureList items={[...REDUP_LEFT, ...REDUP_RIGHT]} color="var(--mogno)" lastItalic="– Implantação não inclusa" /></div>
               <p className="mt-2 text-xs text-mogno" style={{ lineHeight: "20px" }}>*Aulas extras sem data ou quantidade fixa.</p>
-              <div className="mt-6 flex justify-center"><PriceBlock reais={priceRedup.reais} centavos={priceRedup.centavos} color="var(--bege-texto)" /></div>
+              <div className="mt-6 flex justify-center"><PriceBlock prefix="12x de" reais={priceRedup.reais} centavos={priceRedup.centavos} color="var(--bege-texto)" /></div>
               <ul className="mt-2 space-y-0.5 text-xs text-mogno"><PriceTerms plan={redup} /></ul>
               <a href={getCheckoutUrl(redup.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-full max-w-[284px] items-center justify-center gap-3 rounded-[19px] bg-vermelho-redrive font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redup.ctaLabel} <span className="text-lg">→</span></a>
               <p className="mt-2 text-[10px] text-mogno">✓ {redup.guaranteeDays} dias de garantia · Sem burocracia</p>
@@ -364,7 +370,7 @@ export function Pricing() {
                 <div className="mt-6 pt-4"><FeatureList items={REDMAX_RIGHT} color="var(--bege-texto)" /></div>
               </div>
               <div className="flex flex-col items-end px-10 py-10">
-                <PriceBlock reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" />
+                <PriceBlock prefix="12x de" reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" />
                 <ul className="mt-2 self-end space-y-0.5 text-xs text-bege-texto" style={{ paddingRight: 68 }}><PriceTerms plan={redmax} /></ul>
                 <a href={getCheckoutUrl(redmax.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-[284px] items-center justify-center gap-3 rounded-[19px] bg-[#201b1b] font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redmax.ctaLabel} <span className="text-lg">→</span></a>
                 <p className="mt-2 self-end text-[10px] text-bege-texto" style={{ paddingRight: 68 }}>✓ 7 dias de garantia · Nosso time entra em contato</p>
@@ -377,7 +383,7 @@ export function Pricing() {
               <p className="mt-3 font-display text-creme-destaque" style={{ fontSize: 15, lineHeight: "22px", ...GLANCYR_REGULAR }}>{redmax.tagline}</p>
               <div className="mt-6 w-full text-left"><FeatureList items={[...REDMAX_LEFT, ...REDMAX_RIGHT]} color="var(--bege-texto)" /></div>
               <p className="mt-2 text-xs text-bege-texto" style={{ lineHeight: "20px" }}>*Aulas extras sem data ou quantidade fixa.</p>
-              <div className="mt-6 flex justify-center"><PriceBlock reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" /></div>
+              <div className="mt-6 flex justify-center"><PriceBlock prefix="12x de" reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" /></div>
               <ul className="mt-2 space-y-0.5 text-xs text-bege-texto"><PriceTerms plan={redmax} /></ul>
               <a href={getCheckoutUrl(redmax.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-full max-w-[284px] items-center justify-center gap-3 rounded-[19px] bg-[#201b1b] font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redmax.ctaLabel} <span className="text-lg">→</span></a>
               <p className="mt-2 text-[10px] text-bege-texto">✓ 7 dias de garantia · Nosso time entra em contato</p>

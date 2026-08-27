@@ -367,7 +367,7 @@ export function Pricing() {
                 <PriceBlock reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" />
                 <ul className="mt-2 self-end space-y-0.5 text-xs text-bege-texto" style={{ paddingRight: 68 }}><PriceTerms plan={redmax} /></ul>
                 <a href={getCheckoutUrl(redmax.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-[284px] items-center justify-center gap-3 rounded-[19px] bg-[#201b1b] font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redmax.ctaLabel} <span className="text-lg">→</span></a>
-                <p className="mt-2 self-end text-[10px] text-bege-texto" style={{ paddingRight: 68 }}>Nosso time entra em contato para alinhar</p>
+                <p className="mt-2 self-end text-[10px] text-bege-texto" style={{ paddingRight: 68 }}>✓ 7 dias de garantia · Nosso time entra em contato</p>
               </div>
             </div>
 
@@ -380,7 +380,7 @@ export function Pricing() {
               <div className="mt-6 flex justify-center"><PriceBlock reais={priceRedmax.reais} centavos={priceRedmax.centavos} color="#ffedcd" /></div>
               <ul className="mt-2 space-y-0.5 text-xs text-bege-texto"><PriceTerms plan={redmax} /></ul>
               <a href={getCheckoutUrl(redmax.slug)} target="_blank" rel="noopener noreferrer" className="btn-lp mt-6 flex w-full max-w-[284px] items-center justify-center gap-3 rounded-[19px] bg-[#201b1b] font-display text-white" style={{ height: 50, fontSize: 14, ...GLANCYR_BOLD_EXPANDED }}>{redmax.ctaLabel} <span className="text-lg">→</span></a>
-              <p className="mt-2 text-[10px] text-bege-texto">Nosso time entra em contato para alinhar</p>
+              <p className="mt-2 text-[10px] text-bege-texto">✓ 7 dias de garantia · Nosso time entra em contato</p>
             </div>
           </div>
 

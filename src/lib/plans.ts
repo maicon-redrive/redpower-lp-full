@@ -117,7 +117,7 @@ export const PLANS: Record<PlanSlug, Plan> = {
     includesImplementation: true,
     requiresShippingAddress: true,
     requiresOnboardingScheduling: true,
-    guaranteeDays: null,
+    guaranteeDays: 7,
     features: [
       "Tudo do RedMax incluso",
       "Implantação técnica da Redrive",
@@ -224,6 +224,6 @@ export const FAQ_ITEMS: { question: string; answer: string }[] = [
   {
     question: "Tem garantia?",
     answer:
-      "O RedUp Full tem 7 dias de garantia incondicional: se não ficar satisfeito, devolvemos 100% do valor. Como o programa inclui o envio do livro físico, basta devolvê-lo nas mesmas condições em que recebeu — o frete de retorno fica por nossa conta. O RedMax Full, por incluir a implantação assistida, tem os termos alinhados com nosso time no início.",
+      "Sim — RedUp Full e RedMax Full têm 7 dias de garantia incondicional. Se por qualquer motivo não ficar satisfeito, devolvemos 100% do valor. Como o programa inclui o envio do livro físico, basta devolvê-lo nas mesmas condições em que recebeu — o frete de retorno fica por nossa conta.",
   },
 ];

@@ -2,12 +2,12 @@ import { GLANCYR_MEDIUM_EXPANDED } from "@/lib/typography";
 
 const AUDIENCES = [
   {
-    title: "O MÉTODO",
-    body: "Nascido de anos de operação real de vendas do nosso CEO — testado e ajustado na prática. 8 aulas com o Daniel e dois livros (como complemento) que mostram o que fazer em cada fase, e por quê.",
+    title: "A FERRAMENTA",
+    body: "A Redrive: geração de leads, atendimento com agentes de IA, CRM e jornadas num só sistema, com IA vendendo em cada etapa. 1 ano de Redrive Enterprise incluso.",
   },
   {
-    title: "A FERRAMENTA",
-    body: "1 ano de Redrive Enterprise, o Sistema Operacional de Vendas Agênticas, para a operação rodar de verdade — com IA embarcada vendendo em cada etapa.",
+    title: "O MÉTODO",
+    body: "Nascido de anos de operação real de vendas do nosso CEO. 8 aulas com o Daniel e dois livros que mostram o que fazer em cada fase, e por quê.",
   },
   {
     title: "O ACOMPANHAMENTO",
@@ -20,8 +20,8 @@ export function WhatIsRedPower() {
     <section id="redpower" className="relative z-10 px-6 py-28 lg:px-16 lg:pb-20 lg:pt-36">
       <div className="mx-auto max-w-6xl">
         <p className="mb-2 flex items-center gap-2 text-sm italic text-white">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-vermelho-redrive" />O que é o
-          RedPower
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-vermelho-redrive" />O que é a
+          Redrive
         </p>
 
         <div className="flex flex-col gap-8 lg:grid lg:grid-cols-12">
@@ -31,32 +31,32 @@ export function WhatIsRedPower() {
               style={{ fontSize: "44px", ...GLANCYR_MEDIUM_EXPANDED }}
             >
               <span className="text-[#ff0000]">
-                Método, ferramenta
+                A Redrive faz
                 <br />
-                e acompanhamento
+                a operação girar.
               </span>{" "}
               <span className="text-white">
-                — tudo num
+                O programa faz
                 <br />
-                só programa
+                ela vender por você.
               </span>
             </h2>
             <div className="mt-6 max-w-sm space-y-4 text-base leading-relaxed text-camurca-texto">
               <p>
-                O <strong className="font-extrabold text-bege-texto">RedPower Full</strong> reúne
-                tudo que uma operação de vendas precisa para sair do papel:{" "}
+                A <strong className="font-extrabold text-bege-texto">Redrive</strong> é o{" "}
                 <strong className="font-extrabold text-bege-texto">
-                  o método, a ferramenta e o acompanhamento
+                  Sistema Operacional de Vendas Agênticas
                 </strong>{" "}
-                — juntos, do primeiro dia à primeira venda.
+                — um só lugar onde a operação inteira acontece. Ela capta e qualifica leads, atende
+                com agentes de IA que conversam como seus melhores vendedores, organiza tudo num CRM
+                e conduz cada contato por jornadas automáticas até a venda.
               </p>
               <p>
-                O método não é teoria de internet: nasceu de{" "}
-                <strong className="font-extrabold text-bege-texto">
-                  anos de operação real de vendas do nosso CEO
-                </strong>
-                , testado e ajustado na prática. E não para na aula — nosso time acompanha a
-                implantação para garantir que a operação realmente entre no ar.
+                Mas ferramenta poderosa não entrega sozinha. O{" "}
+                <strong className="font-extrabold text-bege-texto">RedPower Full</strong> soma o
+                método — nascido de anos de operação real de vendas do nosso CEO — e o
+                acompanhamento do nosso time na implantação, para a Redrive rodar de verdade no seu
+                negócio desde o começo.
               </p>
               <p>
                 Quem entende o método opera diferente.

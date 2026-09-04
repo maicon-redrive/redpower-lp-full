@@ -19,10 +19,10 @@ export function AboutDaniel() {
           Quem está por trás do método
         </p>
 
-        <div className="mt-6 grid gap-8 lg:grid-cols-[260px_1fr] lg:items-start">
+        <div className="mt-6 grid gap-8 lg:grid-cols-[260px_1fr] lg:items-stretch">
           {/* Foto com moldura de borda animada */}
-          <div className="mx-auto lg:mx-0">
-            <div className="daniel-photo-frame h-[336px] w-[224px] lg:h-[396px] lg:w-[264px]">
+          <div className="mx-auto lg:mx-0 lg:h-full">
+            <div className="daniel-photo-frame h-[336px] w-[224px] lg:h-full lg:w-[264px]">
               <div className="daniel-photo-inner">
                 <Image
                   src="/images/daniel-reginatto.webp"

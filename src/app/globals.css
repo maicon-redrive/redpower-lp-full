@@ -163,7 +163,7 @@ body {
 }
 .daniel-photo-frame {
   position: relative;
-  padding: 3px;
+  padding: 1px;
   border-radius: 44px;
   overflow: hidden;
   background: #1a0606; /* borda base: vermelho bem escuro */
@@ -188,7 +188,7 @@ body {
   z-index: 1;
   height: 100%;
   width: 100%;
-  border-radius: 42px;
+  border-radius: 43px;
   overflow: hidden;
   background: #2a0a0a; /* fundo avermelhado escuro atrás da foto */
 }

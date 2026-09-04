@@ -375,9 +375,12 @@ export function Method() {
           </div>
           <div className="flex max-w-[443px] flex-col justify-between">
             <p className="text-base leading-relaxed text-bege-texto">
-              O Daniel na frente da câmera ensinando o conceito por trás de cada fase, para que
-              você saiba não só o que configurar, mas por que cada decisão muda o resultado da
-              sua operação.
+              O Daniel na frente da câmera ensinando o conceito por trás de cada fase. Não é um
+              treinamento de apertar botões da Redrive —{" "}
+              <strong className="font-semibold text-bege-texto">
+                é o treino de como construir uma operação comercial eficiente
+              </strong>
+              . Você aprende não só o que configurar, mas por que cada decisão muda o resultado.
             </p>
             <p
               className="mt-4 font-display text-bege-texto"

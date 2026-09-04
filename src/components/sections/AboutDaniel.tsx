@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GLANCYR_MEDIUM_EXPANDED, GLANCYR_THIN_CONDENSED_OBLIQUE, GLANCYR_REGULAR } from "@/lib/typography";
 
 const CREDENTIALS = [
@@ -18,46 +19,59 @@ export function AboutDaniel() {
           Quem está por trás do método
         </p>
 
-        <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start">
-          <div>
-            <h2 className="font-display leading-[1.05] text-bege-texto" style={{ fontSize: 44, ...GLANCYR_MEDIUM_EXPANDED }}>
-              Daniel
-              <br />
-              Reginatto
-            </h2>
-            <p className="mt-3 font-display text-vermelho-redrive" style={{ fontSize: 16, ...GLANCYR_REGULAR }}>
-              Fundador e CEO da Redrive · Autor
-            </p>
+        <div className="mt-6 grid gap-8 lg:grid-cols-[260px_1fr] lg:items-start">
+          {/* Foto */}
+          <div className="mx-auto lg:mx-0">
+            <div className="relative h-[330px] w-[220px] lg:h-[390px] lg:w-[260px]">
+              <Image
+                src="/images/daniel-reginatto.webp"
+                alt="Daniel Reginatto"
+                fill
+                className="object-cover"
+                style={{ borderRadius: 40 }}
+                sizes="260px"
+              />
+            </div>
           </div>
 
-          <div className="space-y-4 text-base leading-relaxed text-camurca-texto">
-            <p>
-              Quase três décadas em tecnologia: foi desenvolvedor no ReclameAqui, diretor de
-              tecnologia no grupo Wiser (Wise Up), do Flávio Augusto, por cerca de dez anos, e
-              co-fundou o meuSucesso.com.
-            </p>
-            <p>
-              Em 2020 fundou a <strong className="font-semibold text-bege-texto">Redrive</strong> para
-              resolver um problema de escala que viveu na pele. Com um método próprio de vendas pelo
-              WhatsApp, já ajudou milhares de empresas em{" "}
-              <strong className="font-semibold text-bege-texto">mais de 30 países</strong> — a Redrive
-              cresceu 3.000% no primeiro ano e hoje passa de 20 mil vendedores ativos.
-            </p>
-            <p>
-              É autor de <strong className="font-semibold text-bege-texto">A Magia da Conversa</strong>{" "}
-              e <strong className="font-semibold text-bege-texto">Chat First</strong>. O método do
-              RedPower Full nasce dessa trajetória — anos de operação real de vendas, destilados em aula.
+          {/* Conteúdo */}
+          <div>
+            <h2 className="font-display leading-[1.05] text-bege-texto" style={{ fontSize: 40, ...GLANCYR_MEDIUM_EXPANDED }}>
+              Daniel Reginatto
+            </h2>
+            <p className="mt-2 font-display text-vermelho-redrive" style={{ fontSize: 16, ...GLANCYR_REGULAR }}>
+              Fundador e CEO da Redrive · Autor
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-2">
-              {CREDENTIALS.map((c) => (
-                <span
-                  key={c}
-                  className="rounded-full border border-vermelho-redrive/60 bg-vermelho-redrive/10 px-3 py-1 text-xs text-bege-texto"
-                >
-                  {c}
-                </span>
-              ))}
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-camurca-texto">
+              <p>
+                Quase três décadas em tecnologia: foi desenvolvedor no ReclameAqui, diretor de
+                tecnologia no grupo Wiser (Wise Up), do Flávio Augusto, por cerca de dez anos, e
+                co-fundou o meuSucesso.com.
+              </p>
+              <p>
+                Em 2020 fundou a <strong className="font-semibold text-bege-texto">Redrive</strong> para
+                resolver um problema de escala que viveu na pele. Com um método próprio de vendas pelo
+                WhatsApp, já ajudou milhares de empresas em{" "}
+                <strong className="font-semibold text-bege-texto">mais de 30 países</strong> — a Redrive
+                cresceu 3.000% no primeiro ano e hoje passa de 20 mil vendedores ativos.
+              </p>
+              <p>
+                É autor de <strong className="font-semibold text-bege-texto">A Magia da Conversa</strong>{" "}
+                e <strong className="font-semibold text-bege-texto">Chat First</strong>. O método do
+                RedPower Full nasce dessa trajetória — anos de operação real de vendas, destilados em aula.
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                {CREDENTIALS.map((c) => (
+                  <span
+                    key={c}
+                    className="rounded-full border border-vermelho-redrive/60 bg-vermelho-redrive/10 px-3 py-1 text-xs text-bege-texto"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

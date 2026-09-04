@@ -16,8 +16,8 @@ const GLANCYR_REGULAR = {
 const CARDS = [
   {
     word: "LEADS",
-    lines: ["sem fonte", "e sem método"],
-    body: "Fontes caras ou nenhuma ativa, sem método para captar e muita desqualificação. O topo do funil vive incerto.",
+    lines: ["sem fonte,", "sem método"],
+    body: "E isso quando há leads. Fontes caras ou nenhuma ativa, muita desqualificação e um topo de funil sempre incerto.",
     gradientFrom: "var(--vermelho-redrive)",
     gradientTo: "#900",
     wordColor: "text-creme-destaque",
@@ -33,7 +33,7 @@ const CARDS = [
   {
     word: "VENDAS",
     lines: ["que dependem", "de pessoas"],
-    body: "Vender depende de quem vende, não de um método replicável e escalável. Se o vendedor sai, o resultado vai junto.",
+    body: "Vender depende de quem está na empresa no dia. Se a pessoa certa não está, não vende — falta um método replicável e escalável.",
     gradientFrom: "#444343",
     gradientTo: "#0c0909",
     wordColor: "text-vermelho-redrive",
@@ -48,7 +48,7 @@ const CARDS = [
   {
     word: "CAOS",
     lines: ["no lugar", "de processo"],
-    body: "Planilhas e WhatsApp pessoal no lugar de processo. Sem padrão, sem histórico e sem previsão de quanto vai entrar.",
+    body: "No lugar de um processo, planilhas soltas e WhatsApp pessoal. Sem padrão, sem histórico e sem a menor previsão de quanto entra no mês.",
     gradientFrom: "var(--creme-destaque)",
     gradientTo: "var(--bege-texto)",
     wordColor: "text-vermelho-redrive",

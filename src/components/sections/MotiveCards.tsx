@@ -16,8 +16,8 @@ const GLANCYR_REGULAR = {
 const CARDS = [
   {
     word: "LEADS",
-    lines: ["sendo gerados,", "mas sem cadência"],
-    body: "A captação funciona, mas o follow-up some depois do primeiro contato. O funil enche pelo topo e vaza no meio.",
+    lines: ["que chegam", "e se perdem"],
+    body: "Sem processo nem follow-up, o contato esfria: ninguém responde a tempo e a venda vai pro concorrente.",
     gradientFrom: "var(--vermelho-redrive)",
     gradientTo: "#900",
     wordColor: "text-creme-destaque",
@@ -31,9 +31,9 @@ const CARDS = [
     linePos: { left: "37.2%" },
   },
   {
-    word: "IA ATIVA",
-    lines: ["mas não configurada", "para vender"],
-    body: "O Maestro e os agentes existem na conta. Mas sem o conceito certo, viram só respostas automáticas — não vendedores digitais.",
+    word: "VENDAS",
+    lines: ["que dependem", "só de você"],
+    body: "Um mês vende, outro não. Sem um sistema rodando, cada venda depende de esforço manual, memória e sorte.",
     gradientFrom: "#444343",
     gradientTo: "#0c0909",
     wordColor: "text-vermelho-redrive",
@@ -46,9 +46,9 @@ const CARDS = [
     linePos: { left: "46.5%" },
   },
   {
-    word: "CRM",
-    lines: ["preenchido, mas sem", "inteligência sendo gerada"],
-    body: 'Os dados estão lá. Mas sem metodologia aplicada, o pipeline é um cemitério de oportunidades marcadas como "em andamento".',
+    word: "CAOS",
+    lines: ["no lugar", "de processo"],
+    body: "Tudo vive em planilhas e no WhatsApp. Você não enxerga o funil, não sabe onde perde nem consegue prever o próximo mês.",
     gradientFrom: "var(--creme-destaque)",
     gradientTo: "var(--bege-texto)",
     wordColor: "text-vermelho-redrive",

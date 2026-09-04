@@ -14,7 +14,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-6xl">
         <p className="mb-0 flex items-center gap-2 text-sm italic text-white lg:mb-4">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-vermelho-redrive" />
-          RedPower — Exclusivo para clientes Redrive
+          RedPower Full — método + Redrive, do primeiro dia
         </p>
       </div>
 
@@ -104,14 +104,12 @@ export function Hero() {
         <div className="grid gap-0 lg:grid-cols-[1fr_1.1fr] lg:items-end">
           <div>
             <h1
-              className="max-w-2xl font-display leading-[1.05] text-bege-texto"
-              style={{ fontSize: "58px", ...GLANCYR_BOLD_EXPANDED }}
+              className="max-w-xl font-display leading-[1.08] text-bege-texto"
+              style={{ fontSize: "46px", ...GLANCYR_BOLD_EXPANDED }}
             >
-              Sua operação de
+              Sua operação de vendas com IA,
               <br />
-              vendas com IA, <span className="text-vermelho-redrive">do zero</span>
-              <br />
-              <span className="text-vermelho-redrive">à primeira venda</span>
+              <span className="text-vermelho-redrive">do zero à primeira venda</span>
             </h1>
 
             <p className="mt-6 max-w-md text-base leading-relaxed text-camurca-texto">

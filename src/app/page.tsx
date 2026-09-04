@@ -7,6 +7,7 @@ import { RedPowerDivider } from "@/components/sections/RedPowerDivider";
 import { Journeys } from "@/components/sections/Journeys";
 import { Method } from "@/components/sections/Method";
 import { Books } from "@/components/sections/Books";
+import { AboutDaniel } from "@/components/sections/AboutDaniel";
 import { Implementation } from "@/components/sections/Implementation";
 import { Pricing } from "@/components/sections/Pricing";
 import { Comparison } from "@/components/sections/Comparison";
@@ -27,6 +28,7 @@ export default function Home() {
       <Journeys />
       <Method />
       <Books />
+      <AboutDaniel />
       <Implementation />
       <Pricing />
       <Comparison />

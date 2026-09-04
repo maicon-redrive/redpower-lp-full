@@ -2,7 +2,7 @@ import { GLANCYR_MEDIUM_EXPANDED, GLANCYR_THIN_CONDENSED_OBLIQUE, GLANCYR_REGULA
 
 const CREDENTIALS = [
   "Fundador e CEO da Redrive",
-  "Diretor de tecnologia na Wise Up (~10 anos)",
+  "Diretor de tecnologia no grupo Wiser / Wise Up (~10 anos)",
   "Co-fundador do meuSucesso.com",
   "Autor de A Magia da Conversa e Chat First",
   "Redrive em +30 países",
@@ -33,7 +33,8 @@ export function AboutDaniel() {
           <div className="space-y-4 text-base leading-relaxed text-camurca-texto">
             <p>
               Quase três décadas em tecnologia: foi desenvolvedor no ReclameAqui, diretor de
-              tecnologia da Wise Up por cerca de dez anos e co-fundou o meuSucesso.com.
+              tecnologia no grupo Wiser (Wise Up), do Flávio Augusto, por cerca de dez anos, e
+              co-fundou o meuSucesso.com.
             </p>
             <p>
               Em 2020 fundou a <strong className="font-semibold text-bege-texto">Redrive</strong> para

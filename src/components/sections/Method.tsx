@@ -395,7 +395,7 @@ export function Method() {
 
         {/* Daniel bio — full width */}
         <p className="mt-12 leading-relaxed text-bege-texto/70" style={{ fontSize: "16px" }}>
-          Daniel Reginatto é CEO e fundador da Redrive e foi CTO da Wiser Educação, do Flávio Augusto, por 10 anos. Ao longo dessa
+          Daniel Reginatto é CEO e fundador da Redrive e foi diretor de tecnologia no grupo Wiser (Wise Up), do Flávio Augusto, por 10 anos. Ao longo dessa
           jornada e da operação da Redrive, lapidou o Método Redrive. Tudo que ele ensina aqui,
           é aplicado e validado no dia a dia pelo comercial da Redrive.
         </p>

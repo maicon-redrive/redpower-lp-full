@@ -156,3 +156,42 @@ body {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(400%); }
 }
+
+/* Daniel photo frame — animated light point running along the border */
+@keyframes daniel-border-spin {
+  to { transform: rotate(1turn); }
+}
+.daniel-photo-frame {
+  position: relative;
+  padding: 3px;
+  border-radius: 44px;
+  overflow: hidden;
+  background: #1a0606; /* borda base: vermelho bem escuro */
+}
+.daniel-photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 285deg,
+    rgba(255, 45, 45, 0.35) 320deg,
+    rgba(255, 130, 130, 0.9) 346deg,
+    #ffffff 353deg,
+    rgba(255, 45, 45, 0.35) 360deg
+  );
+  animation: daniel-border-spin 4.5s linear infinite;
+}
+.daniel-photo-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  border-radius: 42px;
+  overflow: hidden;
+  background: #2a0a0a; /* fundo avermelhado escuro atrás da foto */
+}
+@media (prefers-reduced-motion: reduce) {
+  .daniel-photo-frame::before { animation: none; }
+}

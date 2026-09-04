@@ -20,17 +20,23 @@ export function AboutDaniel() {
         </p>
 
         <div className="mt-6 grid gap-8 lg:grid-cols-[260px_1fr] lg:items-start">
-          {/* Foto */}
+          {/* Foto com moldura de borda animada */}
           <div className="mx-auto lg:mx-0">
-            <div className="relative h-[330px] w-[220px] lg:h-[390px] lg:w-[260px]">
-              <Image
-                src="/images/daniel-reginatto.webp"
-                alt="Daniel Reginatto"
-                fill
-                className="object-cover"
-                style={{ borderRadius: 40 }}
-                sizes="260px"
-              />
+            <div className="daniel-photo-frame h-[336px] w-[224px] lg:h-[396px] lg:w-[264px]">
+              <div className="daniel-photo-inner">
+                <Image
+                  src="/images/daniel-reginatto.webp"
+                  alt="Daniel Reginatto"
+                  fill
+                  className="object-cover"
+                  sizes="264px"
+                />
+                {/* tom avermelhado escuro no fundo da foto */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: "radial-gradient(120% 85% at 50% 100%, rgba(150,0,0,0.5), transparent 68%)" }}
+                />
+              </div>
             </div>
           </div>
 

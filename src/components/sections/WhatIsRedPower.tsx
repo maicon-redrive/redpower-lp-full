@@ -1,4 +1,4 @@
-import { GLANCYR_MEDIUM_EXPANDED, GLANCYR_LIGHT_CONDENSED } from "@/lib/typography";
+import { GLANCYR_MEDIUM_EXPANDED } from "@/lib/typography";
 
 const AUDIENCES = [
   {
@@ -59,8 +59,8 @@ export function WhatIsRedPower() {
                 negócio desde o começo.
               </p>
               <p
-                className="text-bege-texto"
-                style={{ marginTop: 16, fontSize: 35, lineHeight: 1.1, ...GLANCYR_LIGHT_CONDENSED }}
+                className="font-display text-vermelho-redrive"
+                style={{ marginTop: 16, fontSize: 35, lineHeight: 1.1, fontWeight: 600, fontStretch: "75%", fontVariationSettings: '"wght" 600, "wdth" 75' }}
               >
                 Quem entende o método opera diferente.
                 <br />

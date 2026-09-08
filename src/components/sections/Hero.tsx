@@ -3,7 +3,7 @@ import { HeroCarousel } from "./HeroCarousel";
 import { OrbitingBadges } from "./OrbitingBadges";
 import { GLANCYR_BOLD_EXPANDED, GLANCYR_THIN_CONDENSED_OBLIQUE } from "@/lib/typography";
 
-const SIDE_LIST = ["Método Redrive", "Chat First (Livro)", "Magia da Conversa (livro)", "Implantação Redrive"];
+const SIDE_LIST = ["1 ano de Redrive", "Método Redrive", "Chat First (Livro)", "Magia da Conversa (livro)", "Implantação Redrive"];
 
 export function Hero() {
   return (
@@ -101,11 +101,11 @@ export function Hero() {
 
       {/* Desktop layout: original grid */}
       <div className="relative mx-auto mt-24 hidden max-w-6xl lg:block">
-        <div className="grid gap-0 lg:grid-cols-[1fr_1.1fr] lg:items-end">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
           <div>
             <h1
-              className="max-w-xl font-display leading-[1.08] text-bege-texto"
-              style={{ fontSize: "46px", ...GLANCYR_BOLD_EXPANDED }}
+              className="max-w-2xl font-display leading-[1.08] text-bege-texto"
+              style={{ fontSize: "50px", ...GLANCYR_BOLD_EXPANDED }}
             >
               Sua operação de vendas com IA,
               <br />
@@ -124,6 +124,22 @@ export function Hero() {
               — por menos de <strong className="font-semibold text-bege-texto">R$30 por dia</strong>.
             </p>
 
+            {/* Inclusos — linha horizontal entre o texto e o CTA */}
+            <ul className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              {SIDE_LIST.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-2 whitespace-nowrap font-display text-white"
+                  style={{ fontSize: 13, ...GLANCYR_THIN_CONDENSED_OBLIQUE }}
+                >
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-vermelho-redrive">
+                    <svg width="10" height="11" viewBox="0 0 11 12" fill="none"><path d="M0 7L0.28 5H4.28L5 0H7L6.28 5H10.28L10 7H6L5.32 12H3.32L4 7H0Z" fill="white"/></svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
             <div className="mt-8 flex flex-wrap items-center gap-6">
               <a
                 href="#redpower"
@@ -140,28 +156,17 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Card carousel — shifted 15% right */}
-          <div className="relative mx-auto h-[351px] w-[265px]" style={{ marginLeft: "10%" }}>
-            <HeroCarousel />
-            <OrbitingBadges />
+          {/* Animação — maior e deslocada à direita, escala proporcional */}
+          <div className="relative ml-auto h-[421px] w-[318px]">
+            <div
+              className="absolute left-1/2 top-1/2 h-[351px] w-[265px]"
+              style={{ transform: "translate(-50%, -50%) scale(1.2)" }}
+            >
+              <HeroCarousel />
+              <OrbitingBadges />
+            </div>
           </div>
         </div>
-
-        {/* Side list — right edge, bottom aligned with <p> (above CTA buttons) */}
-        <ul className="absolute right-0 space-y-2" style={{ bottom: "60px" }}>
-          {SIDE_LIST.map((item) => (
-            <li
-              key={item}
-              className="flex items-center gap-2 whitespace-nowrap font-display text-white"
-              style={{ fontSize: "16px", ...GLANCYR_THIN_CONDENSED_OBLIQUE }}
-            >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-vermelho-redrive">
-                <svg width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M0 7L0.28 5H4.28L5 0H7L6.28 5H10.28L10 7H6L5.32 12H3.32L4 7H0Z" fill="white"/></svg>
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

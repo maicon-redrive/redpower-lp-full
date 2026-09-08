@@ -102,7 +102,7 @@ export function Hero() {
       {/* Desktop layout: original grid */}
       <div className="relative mx-auto mt-24 hidden max-w-6xl lg:block">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
-          <div>
+          <div className="min-w-0">
             <h1
               className="max-w-2xl font-display leading-[1.08] text-bege-texto"
               style={{ fontSize: "50px", ...GLANCYR_BOLD_EXPANDED }}
@@ -125,15 +125,15 @@ export function Hero() {
             </p>
 
             {/* Inclusos — uma única linha horizontal entre o texto e o CTA */}
-            <ul className="mt-6 flex flex-nowrap items-center gap-x-3">
+            <ul className="mt-6 flex w-max flex-nowrap items-center gap-x-4">
               {SIDE_LIST.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-1.5 whitespace-nowrap font-display text-white"
-                  style={{ fontSize: 12, ...GLANCYR_THIN_CONDENSED_OBLIQUE }}
+                  className="flex items-center gap-2 whitespace-nowrap font-display text-white"
+                  style={{ fontSize: 16, ...GLANCYR_THIN_CONDENSED_OBLIQUE }}
                 >
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-vermelho-redrive">
-                    <svg width="9" height="10" viewBox="0 0 11 12" fill="none"><path d="M0 7L0.28 5H4.28L5 0H7L6.28 5H10.28L10 7H6L5.32 12H3.32L4 7H0Z" fill="white"/></svg>
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-vermelho-redrive">
+                    <svg width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M0 7L0.28 5H4.28L5 0H7L6.28 5H10.28L10 7H6L5.32 12H3.32L4 7H0Z" fill="white"/></svg>
                   </span>
                   {item}
                 </li>

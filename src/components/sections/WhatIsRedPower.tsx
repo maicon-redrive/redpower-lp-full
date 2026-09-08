@@ -1,4 +1,4 @@
-import { GLANCYR_MEDIUM_EXPANDED } from "@/lib/typography";
+import { GLANCYR_MEDIUM_EXPANDED, GLANCYR_LIGHT_CONDENSED } from "@/lib/typography";
 
 const AUDIENCES = [
   {
@@ -58,7 +58,10 @@ export function WhatIsRedPower() {
                 acompanhamento do nosso time na implantação, para a Redrive rodar de verdade no seu
                 negócio desde o começo.
               </p>
-              <p>
+              <p
+                className="text-bege-texto"
+                style={{ marginTop: 16, fontSize: 35, lineHeight: 1.1, ...GLANCYR_LIGHT_CONDENSED }}
+              >
                 Quem entende o método opera diferente.
                 <br />
                 Configura diferente. Cresce diferente.

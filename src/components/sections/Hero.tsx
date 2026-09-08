@@ -7,7 +7,7 @@ const SIDE_LIST = ["1 ano de Redrive", "Método", "Chat First", "Magia da Conver
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pt-[120px] pb-28 lg:pt-32 lg:px-16 lg:pb-36">
+    <section className="relative overflow-hidden px-6 pt-[120px] pb-28 lg:pt-24 lg:px-16 lg:pb-28">
       <Header />
 
       {/* "RedPower — Exclusivo" stays at original position */}
@@ -100,7 +100,7 @@ export function Hero() {
       </div>
 
       {/* Desktop layout: original grid */}
-      <div className="relative mx-auto mt-24 hidden max-w-6xl lg:block">
+      <div className="relative mx-auto mt-10 hidden max-w-6xl lg:block">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
           <div className="min-w-0">
             <h1

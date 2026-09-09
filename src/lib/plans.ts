@@ -84,8 +84,8 @@ export const PLANS: Record<PlanSlug, Plan> = {
   "redup-full": {
     slug: "redup-full",
     name: "RedUp Full",
-    // R$997 (RedUp) + 12 × R$697 (Redrive Enterprise) = R$9.361
-    priceCents: 99700 + REDRIVE_COMBO_VALUE_CENTS,
+    // Preço de lançamento — 12x de R$787 (total R$9.444). Base: RedUp + 12 meses de Redrive.
+    priceCents: 944400,
     tagline:
       "O programa completo para começar: o método do CEO + um ano de Redrive, o Sistema Operacional de Vendas Agênticas. Do conceito à primeira venda, sem intervalo.",
     includesImplementation: false,
@@ -110,8 +110,8 @@ export const PLANS: Record<PlanSlug, Plan> = {
   "redmax-full": {
     slug: "redmax-full",
     name: "RedMax Full",
-    // R$1.997 (RedMax) + 12 × R$697 (Redrive Enterprise) = R$10.361
-    priceCents: 199700 + REDRIVE_COMBO_VALUE_CENTS,
+    // Preço de lançamento — 12x de R$867 (total R$10.404). Base: RedMax + 12 meses de Redrive.
+    priceCents: 1040400,
     tagline:
       "Potência total, do zero à operação no ar. Método, implantação técnica e um ano de Redrive Enterprise — a máquina montada, configurada e rodando por você.",
     includesImplementation: true,

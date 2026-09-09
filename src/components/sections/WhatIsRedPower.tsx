@@ -58,14 +58,6 @@ export function WhatIsRedPower() {
                 acompanhamento do nosso time na implantação, para a Redrive rodar de verdade no seu
                 negócio desde o começo.
               </p>
-              <p
-                className="font-display text-vermelho-redrive"
-                style={{ marginTop: 16, fontSize: 35, lineHeight: 1.1, fontWeight: 600, fontStretch: "75%", fontVariationSettings: '"wght" 600, "wdth" 75' }}
-              >
-                Quem entende o método opera diferente.
-                <br />
-                Configura diferente. Cresce diferente.
-              </p>
             </div>
           </div>
 
@@ -99,6 +91,15 @@ export function WhatIsRedPower() {
             ))}
           </div>
         </div>
+
+        <p
+          className="font-display text-vermelho-redrive"
+          style={{ marginTop: 56, fontSize: 35, lineHeight: 1.2, fontWeight: 600, fontStretch: "75%", fontVariationSettings: '"wght" 600, "wdth" 75' }}
+        >
+          Quem entende o método opera diferente.
+          <br />
+          Configura diferente. Cresce diferente.
+        </p>
       </div>
     </section>
   );

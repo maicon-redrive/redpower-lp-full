@@ -214,7 +214,7 @@ export const FAQ_ITEMS: { question: string; answer: string }[] = [
   {
     question: "Os livros são físicos ou digitais?",
     answer:
-      "Os dois livros (Magia da Conversa e Chat First) entram como complemento do programa, em formato digital e físico — ebook para acesso imediato e o impresso enviado para o seu endereço.",
+      "Os dois livros (Magia da Conversa e Chat First) entram como complemento do programa, em formato digital e físico — e-book para acesso imediato e o impresso enviado para o seu endereço.",
   },
   {
     question: "Quais são as formas de pagamento?",

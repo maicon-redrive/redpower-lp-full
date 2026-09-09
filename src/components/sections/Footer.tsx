@@ -49,7 +49,7 @@ export function Footer() {
       </div>
 
       <p className="mt-16 text-center text-sm text-white">
-        2026 © Redrive - Todos os direitos reservados | Operação inteligente. Crescimento
+        © 2026 Redrive — Todos os direitos reservados | Operação inteligente. Crescimento
         previsível.
       </p>
     </footer>

@@ -4,6 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useState, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import { GLANCYR_BOLD_EXPANDED, GLANCYR_REGULAR, GLANCYR_THIN_CONDENSED_OBLIQUE } from "@/lib/typography";
+import { PLANS, installmentCents, cashPriceCents, formatBRL, type PlanSlug } from "@/lib/plans";
+
+const COMBO_SLUGS = ["redup-full", "redmax-full"];
 
 declare global { interface Window { fbq?: (...args: unknown[]) => void; gtag?: (...args: unknown[]) => void } }
 
@@ -41,6 +44,10 @@ function EnvioContent() {
     address_state: "",
   });
   const [loading, setLoading] = useState(false);
+  const [pagamento, setPagamento] = useState<"12x" | "avista">("12x");
+
+  const isCombo = COMBO_SLUGS.includes(plano);
+  const combo = isCombo ? PLANS[plano as PlanSlug] : null;
 
   useEffect(() => {
     window.fbq?.("track", "Lead", { content_name: planName });
@@ -87,6 +94,24 @@ function EnvioContent() {
 
       window.fbq?.("track", "InitiateCheckout", { content_name: planName, currency: "BRL" });
       window.gtag?.("event", "begin_checkout", { event_category: "funnel", event_label: planName, currency: "BRL" });
+
+      // Combos → Stripe Checkout Session
+      if (isCombo) {
+        const chkRes = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ plano, ref_id: data.ref_id, pagamento }),
+        });
+        const chk = await chkRes.json();
+        if (!chkRes.ok || !chk.url) {
+          setError(chk.error || "Erro ao iniciar o pagamento. Tente novamente.");
+          setLoading(false);
+          return;
+        }
+        window.location.href = chk.url;
+        return;
+      }
+
       const sep = checkoutUrl.includes("?") ? "&" : "?";
       window.location.href = `${checkoutUrl}${sep}utm_source=site&utm_medium=envio&utm_content=${data.ref_id}`;
     } catch {
@@ -191,6 +216,29 @@ function EnvioContent() {
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-[#f5ede4] outline-none transition focus:border-red-500/50 focus:ring-1 focus:ring-red-500/30" placeholder="Bairro" />
             </div>
           </div>
+
+          {isCombo && combo && (
+            <>
+              <hr className="border-white/5" />
+              <h2 className="mb-1 text-xs font-bold uppercase tracking-widest text-[#c4b5a3]">Forma de pagamento</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {([
+                  { key: "12x" as const, top: `12x de R$ ${formatBRL(installmentCents(combo)).reais},${formatBRL(installmentCents(combo)).centavos}`, sub: "sem juros" },
+                  { key: "avista" as const, top: `À vista R$ ${formatBRL(cashPriceCents(combo)).reais},${formatBRL(cashPriceCents(combo)).centavos}`, sub: "10% de desconto" },
+                ]).map((opt) => (
+                  <button
+                    key={opt.key}
+                    type="button"
+                    onClick={() => setPagamento(opt.key)}
+                    className={`rounded-lg border px-4 py-3 text-left transition ${pagamento === opt.key ? "border-red-500/70 bg-red-500/10" : "border-white/10 bg-white/5 hover:border-white/20"}`}
+                  >
+                    <span className="block text-sm font-bold text-[#f5ede4]">{opt.top}</span>
+                    <span className="block text-xs text-[#8a7a6a]">{opt.sub}</span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
 
           {error && <p className="rounded-lg bg-red-500/10 px-4 py-2 text-sm text-red-400">{error}</p>}
 
